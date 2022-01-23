@@ -1,0 +1,18 @@
+King 
+Mega Knight
+Knight
+Cavalry
+Advanced Infantry
+Infantry
+
+Captain
+First Mate
+Quartermaster
+Master-at-Arms
+Advanced Infantry
+Mate
+
+summon knight (control and prefab)
+basic ui and mechanics
+fighting
+game state
