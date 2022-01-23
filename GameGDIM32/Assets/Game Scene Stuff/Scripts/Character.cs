@@ -45,9 +45,7 @@ public class Character : MonoBehaviour, ICharacter
 
     public void Die()
     {
-        this.gameObject.SetActive(false);
-        //add to object pool
-        Debug.Log("death from character class");
+        Destroy(this);
     }
 
     public void Attack(GameObject target)

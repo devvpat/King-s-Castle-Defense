@@ -1,18 +1,6 @@
-King 
-Mega Knight
-Knight
-Cavalry
-Advanced Infantry
-Infantry
-
-Captain
-First Mate
-Quartermaster
-Master-at-Arms
-Advanced Infantry
-Mate
-
-summon knight (control and prefab)
-basic ui and mechanics
-fighting
-game state
+todo:
+add character spawn buttons
+set up coins system with cost
+add score to character death
+add brain to characters;
+add win/loss state;

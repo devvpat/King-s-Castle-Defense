@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseCharacterDecorator : ICharacter
+public class BaseCharacterDecorator : MonoBehaviour, ICharacter
 {
     protected ICharacter m_Character;
 
@@ -13,7 +13,7 @@ public class BaseCharacterDecorator : ICharacter
 
     public void SetCharacter(ICharacter character)
     {
-        if (m_Character != null) m_Character = character;
+        m_Character = character;
     }
 
     public virtual void Attack(GameObject target)

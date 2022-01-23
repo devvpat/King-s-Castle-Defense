@@ -5,21 +5,42 @@ using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour
 {
-    [SerializeField]
-    private bool PlaySolo;
+    public static GameplayManager _instance;
 
     [SerializeField]
-    private GameObject King;
+    private GameData GD;
+
+    [SerializeField]
+    private GameObject KingPrefab;
+    public bool SoloMode;
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(King, new Vector3(18, 1, -5), Quaternion.identity);
+        GD.ResetData();
+        CanvasManager._instance.UpdateData();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public bool GetSoloMode()
+    {
+        return SoloMode;
     }
 }
