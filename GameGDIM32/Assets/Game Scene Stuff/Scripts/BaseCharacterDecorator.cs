@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+//Class written by: Dev Patel
 
-public class BaseCharacterDecorator : MonoBehaviour, ICharacter
+public class BaseCharacterDecorator : ICharacter
 {
     protected ICharacter m_Character;
 
     public BaseCharacterDecorator(ICharacter character)
     {
-        if (m_Character != null) m_Character = character;
+        m_Character = character;
     }
 
     public void SetCharacter(ICharacter character)
@@ -16,19 +14,23 @@ public class BaseCharacterDecorator : MonoBehaviour, ICharacter
         m_Character = character;
     }
 
-    public virtual void Attack(GameObject target)
+    public virtual void Attack()
     {
-        if (m_Character != null) m_Character.Attack(target);
+        if (m_Character != null) m_Character.Attack();
     }
 
     public virtual void Die()
     {
-        if (m_Character != null) m_Character.Die();
-        Debug.Log("death from base decorator");
+        if (m_Character != null) (m_Character as Character).Die();
     }
 
     public virtual void TakeDamage(int damage)
     {
         if (m_Character != null) m_Character.TakeDamage(damage);
+    }
+
+    public Character GetCharacter()
+    {
+        return (m_Character as Character);
     }
 }

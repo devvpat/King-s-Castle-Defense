@@ -17,3 +17,5 @@ MonoBehaviour:
   AttackRange: 1
   Armor: 1
   IsPirate: 1
+  Cost: 15
+  SpeedMod: 3.5

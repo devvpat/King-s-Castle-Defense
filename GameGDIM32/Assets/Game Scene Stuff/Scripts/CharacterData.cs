@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+//Class written by: Dev Patel
+
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/Character Data", fileName = "Character Data")]
@@ -14,4 +14,8 @@ public class CharacterData : ScriptableObject
     //how much resistance this character has to damage
     public int Armor;
     public bool IsPirate;
+    //cost to spawn
+    public int Cost;
+    public float SpeedMod;
+    public bool IsKing;
 }

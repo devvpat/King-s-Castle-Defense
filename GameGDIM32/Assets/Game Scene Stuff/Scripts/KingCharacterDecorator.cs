@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+//Class written by: Dev Patel
 
+//"ConcreteDecorator" for the king character that notifies when pirates/castle win
 public class KingCharacterDecorator : BaseCharacterDecorator
 {
     public KingCharacterDecorator(ICharacter character) : base(character)
@@ -9,16 +8,21 @@ public class KingCharacterDecorator : BaseCharacterDecorator
 
     }
 
-    public override void Attack(GameObject target)
+    public override void Attack()
     {
         //Special attack
     }
 
     public override void Die()
     {
-        //Special death
-        Debug.Log("Death from king decorator");
+        base.Die();
+        if ((m_Character as Character).CharacterStats.IsPirate)
+        {
+            GameplayManager._instance.OnCastleWin();
+        }
+        else
+        {
+            GameplayManager._instance.OnPirateWin();
+        }
     }
-
-    //inherits TakeDamage method from base class ("BaseCharacterDecorator")
 }

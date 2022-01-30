@@ -95,4 +95,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b785718d4bf8aa14dacef6332b18d193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GD: {fileID: 11400000, guid: bd26269cd9455bd4dafed4eada1d0c74, type: 2}
   CharacterStats: {fileID: 11400000, guid: 52e2a37869db8ba48b360705703a38ef, type: 2}

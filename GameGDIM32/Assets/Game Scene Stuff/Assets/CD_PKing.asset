@@ -17,3 +17,6 @@ MonoBehaviour:
   AttackRange: 1
   Armor: 25
   IsPirate: 1
+  Cost: 0
+  SpeedMod: 3.5
+  IsKing: 1

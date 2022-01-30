@@ -1,6 +1,9 @@
 todo:
-add character spawn buttons
-set up coins system with cost
-add score to character death
-add brain to characters;
-add win/loss state;
+add weather
+
+damage character*
+resistance lower*
+damage reduce*
+
+spawn random
+speedmod lower

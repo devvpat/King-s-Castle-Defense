@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+//Class written by: Dev Patel
+
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -23,10 +22,12 @@ public class CanvasManager : MonoBehaviour
     private TMPro.TextMeshProUGUI[] MP_CoinText;
 
     [SerializeField]
-    private GameData GD;
+    private GameObject PirateWinCanvas;
+    [SerializeField]
+    private GameObject CastleWinCanvas;
 
     public delegate void Data();
-    public Data UpdateData;
+    public Data UpdateDisplayedData;
 
     private void Awake()
     {
@@ -41,34 +42,48 @@ public class CanvasManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Setup()
     {
-        //Turns on Singleplayer version of the canvas UI if the game is in singleplayer mode, else turn on multiplayer canvas UI
-        if (GameplayManager._instance.GetSoloMode())
+        //Turns on Singleplayer version of the canvas UI if the game is in singleplayer mode, else turns on the multiplayer canvas UI (not configured yet)
+        //Also creates a delegate for updating the canvas display (update coins and score count), and adds methods to other delegates that get called when the game ends
+        if (GameplayManager._instance.SoloMode)
         {
             SingleplayerCanvas.SetActive(true);
             MultiplayerCanvas.SetActive(false);
-            UpdateData = CanvasManager._instance.SP_UpdateScore;
-            UpdateData += CanvasManager._instance.SP_UpdateCoins;
+            UpdateDisplayedData = CanvasManager._instance.SP_UpdateScore;
+            UpdateDisplayedData += CanvasManager._instance.SP_UpdateCoins;
         }
         else
         {
             SingleplayerCanvas.SetActive(false);
             MultiplayerCanvas.SetActive(true);
-            UpdateData = CanvasManager._instance.MP_UpdateScore;
-            UpdateData += CanvasManager._instance.MP_UpdateCoins;
+            UpdateDisplayedData = CanvasManager._instance.MP_UpdateScore;
+            UpdateDisplayedData += CanvasManager._instance.MP_UpdateCoins;
         }
-        
+        GameplayManager._instance.OnPirateWin += EnablePirateWinCanvas;
+        GameplayManager._instance.OnCastleWin += EnableCastleWinCanvas;        
+    }
+
+    private void EnableCastleWinCanvas()
+    {
+        CastleWinCanvas.SetActive(true);
+        PirateWinCanvas.SetActive(false);
+    }
+
+    private void EnablePirateWinCanvas()
+    {
+        PirateWinCanvas.SetActive(true);
+        CastleWinCanvas.SetActive(false);
     }
 
     public void SP_UpdateScore()
     {
-        SP_ScoreText.text = "Score: " + GD.SP_Score;
+        SP_ScoreText.text = "Score: " + ScoreManager._instance.Scores[0];
     }
 
     public void SP_UpdateCoins()
     {
-        SP_CoinText.text = "Coins: " + GD.SP_Coins;
+        SP_CoinText.text = "Coins: " + CoinManager._instance.Coins[0];
     }
 
     public void MP_UpdateScore()
