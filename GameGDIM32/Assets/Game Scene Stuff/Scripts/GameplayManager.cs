@@ -15,6 +15,7 @@ public class GameplayManager : MonoBehaviour
 
     private void Awake()
     {
+
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -29,6 +30,8 @@ public class GameplayManager : MonoBehaviour
     //Sets itself up first because other managers rely on the state of solomode
     void Start()
     {
+
+        Time.timeScale = 1; //Tien-Yi added this, so game will run when play again
         SelfSetup();
         SetupOthersManagers();
         OnCastleWin += CastleWin;
@@ -36,6 +39,7 @@ public class GameplayManager : MonoBehaviour
         CanvasManager._instance.UpdateDisplayedData();
         CoinManager._instance.BeginGeneration();
         ScoreManager._instance.StartScoreCount();
+        SpawnHandler.EnableSpawn(); //Tien-Yi added this, for turning on the spawn buttons when game starts
     }
 
     private void SelfSetup()

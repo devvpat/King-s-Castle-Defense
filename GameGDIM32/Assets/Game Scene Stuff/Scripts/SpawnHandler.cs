@@ -12,9 +12,15 @@ public class SpawnHandler : MonoBehaviour
         AllowSpawn = false;
     }
 
+    public static void EnableSpawn() //Tien-Yi added this, Enable spawn, made for turning spawn on when game starts
+    {
+        AllowSpawn = true;
+    }
+
     //Spawn castle characters
     public static void Spawn_C1() 
     {
+        Debug.Log(AllowSpawn);
         if (AllowSpawn)
         {
             string characterType = CharacterManager._instance.CharacterName[0];

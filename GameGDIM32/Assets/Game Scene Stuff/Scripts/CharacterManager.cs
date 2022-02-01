@@ -30,6 +30,8 @@ public class CharacterManager : MonoBehaviour
     [SerializeField]
     private Vector3 PirateKingSpawn;
 
+ 
+
     public KingCharacterDecorator CKD { get; private set; }
     public KingCharacterDecorator PKD { get; private set; }
 
@@ -44,6 +46,7 @@ public class CharacterManager : MonoBehaviour
             _instance = this;
         }
     }
+
 
     public void Setup()
     {
@@ -84,6 +87,12 @@ public class CharacterManager : MonoBehaviour
                         CoinManager._instance.Coins[0] -= characterCharComp.CharacterStats.Cost;
                         CanvasManager._instance.UpdateDisplayedData();
                         Spawn(index);
+                    }
+                    else
+                    {
+                        Debug.Log("not enough coins");
+                        NotificationManager.Instance.SetNewNotification("you don't have enough coins!"); 
+                        //when player dont have enough coins to buy + the player is buying, then show this //Tien-Yi
                     }
                 }
                 else if (CoinManager._instance.Coins[player - 1] >= characterCharComp.CharacterStats.Cost)

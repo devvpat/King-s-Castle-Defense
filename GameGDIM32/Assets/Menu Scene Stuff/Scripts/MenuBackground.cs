@@ -14,6 +14,7 @@ public class MenuBackground : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1; //so the script will run after the first game
         startPos = transform.position;
     }
 
