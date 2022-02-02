@@ -7,12 +7,11 @@ using UnityEngine.SceneManagement;
 public class GameStateManager : MonoBehaviour
 {
     [SerializeField]
-    private List<string> scenes = new List<string>(); //make the list of all scenes
+    private string MenuSceneName;
+    [SerializeField]
+    private string GameSceneName;
 
-    private int sceneNumber = 0;
-
-
-    private static GameStateManager instance; //singleton of game state manager
+    public static GameStateManager instance; //singleton of game state manager
 
     private void Awake() //Dont destroy on load
     {
@@ -38,17 +37,13 @@ public class GameStateManager : MonoBehaviour
     public static void NewGame() //starting a new game
     {
         state = GameState.Playing;
-        instance.sceneNumber++;
-        SceneManager.LoadScene(instance.scenes[instance.sceneNumber]);
+        SceneManager.LoadScene(GameStateManager.instance.GameSceneName);
     }
-
-   
 
     public static void QuitToTitle() //moving back to the MENU
     {
         state = GameState.Menu;
-        instance.sceneNumber = 0;
-        SceneManager.LoadScene(instance.scenes[instance.sceneNumber]);
+        SceneManager.LoadScene(GameStateManager.instance.MenuSceneName);
     }
 
     

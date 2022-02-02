@@ -16,7 +16,6 @@ public class MainMenu : MonoBehaviour
         Application.Quit(); //Quit the game
     }
 
-
     public void QuitToTitle() //quit button on GAME scene
     {
         GameStateManager.QuitToTitle(); //moving to menu scene
@@ -24,6 +23,6 @@ public class MainMenu : MonoBehaviour
 
     public void RestartGame() //restart button on GAME scene
     {
-        SceneManager.LoadScene("Game"); //load the game scene again
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); //load the game scene again
     }
 }
