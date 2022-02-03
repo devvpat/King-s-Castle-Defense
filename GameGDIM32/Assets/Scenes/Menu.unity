@@ -487,7 +487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &24750574
 RectTransform:
   m_ObjectHideFlags: 0
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: credit
+  m_text: gameplay design
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
   m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
@@ -2139,49 +2139,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150713123}
   m_CullTransparentMesh: 1
---- !u!1 &151501465
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 151501467}
-  - component: {fileID: 151501466}
-  m_Layer: 0
-  m_Name: testNotification!
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &151501466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 151501465}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2177ad1f5b61f474c880b6618ef0bd1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &151501467
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 151501465}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 676.3772, y: 405.23465, z: -204.17453}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &157576113
 GameObject:
   m_ObjectHideFlags: 0
@@ -8266,7 +8223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &602489521
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8306,7 +8263,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: credit
+  m_text: UI
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
   m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
@@ -9537,7 +9494,7 @@ GameObject:
   - component: {fileID: 674530469}
   - component: {fileID: 674530468}
   m_Layer: 5
-  m_Name: CreditsButton
+  m_Name: AssetsUsedButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9560,8 +9517,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -237, y: -12}
-  m_SizeDelta: {x: 178.8478, y: 41.8692}
+  m_AnchoredPosition: {x: -192.54955, y: -12}
+  m_SizeDelta: {x: 267.7487, y: 41.8692}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &674530468
 MonoBehaviour:
@@ -10824,7 +10781,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &756067816
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10864,7 +10821,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: credit
+  m_text: level design
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
   m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
@@ -12468,7 +12425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &878189299
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12508,7 +12465,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: credit
+  m_text: Animations
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
   m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
@@ -13859,7 +13816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 981250916}
   m_Layer: 5
-  m_Name: CreditMenu
+  m_Name: AssetsUsedMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15345,7 +15302,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1092296896
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15385,7 +15342,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: credit
+  m_text: lead programmer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
   m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
@@ -18908,7 +18865,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1290625759}
   m_Layer: 5
-  m_Name: EditorsMenu
+  m_Name: CreditsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19379,7 +19336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Credit
+  m_text: Assets Used
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
   m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
@@ -19771,7 +19728,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1323528772
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20182,9 +20139,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'editors
-
-'
+  m_text: credits
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
   m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
@@ -21033,7 +20988,7 @@ GameObject:
   - component: {fileID: 1387428757}
   - component: {fileID: 1387428756}
   m_Layer: 5
-  m_Name: EditorsButton
+  m_Name: CreditsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23533,9 +23488,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'editors
-
-'
+  m_text: Credits
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
   m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
@@ -27825,7 +27778,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GameTitle
+  m_text: King's castle defnese
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
   m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
@@ -27854,8 +27807,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62
-  m_fontSizeBase: 62
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -31126,7 +31079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1966849017
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31166,7 +31119,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: credit
+  m_text: Menus
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
   m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
@@ -32130,7 +32083,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: credits
+  m_text: Assets used
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
   m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
@@ -32195,7 +32148,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0.30355072, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

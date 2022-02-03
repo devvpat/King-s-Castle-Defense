@@ -66,6 +66,8 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
+
+    //Two methods for winning that have same body because in the future, each one will display a unique message/picture
     private void PirateWin()
     {
         Time.timeScale = 0;

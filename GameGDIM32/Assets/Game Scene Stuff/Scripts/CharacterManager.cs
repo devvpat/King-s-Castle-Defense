@@ -51,8 +51,19 @@ public class CharacterManager : MonoBehaviour
     public void Setup()
     {
         CastleArmyComp = CastleArmy.GetComponent<Army>();
+        DestroyAllChildren(CastleArmy);
         PirateArmyComp = PirateArmy.GetComponent<Army>();
+        DestroyAllChildren(PirateArmy);
         InitialSpawn();
+    }
+
+    //Clears all characters in case some are alive when they shouldn't be (during setup)
+    private void DestroyAllChildren(GameObject obj)
+    {
+        foreach (Transform child in obj.transform)
+        {
+            if (child.tag == "Player") Destroy(child.gameObject);
+        }
     }
 
     //spawns the king as well as 2 castle troops before the first enemies spawn
@@ -60,7 +71,7 @@ public class CharacterManager : MonoBehaviour
     {
         SpawnCharacter("CKing", 1);
         Spawn(1);
-        Spawn(2);
+        Spawn(1);
     }
 
     //takes the characterName and references the CharacterName list to find the corresponding index in the CharacterPrefab list
@@ -90,7 +101,6 @@ public class CharacterManager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("not enough coins");
                         NotificationManager.Instance.SetNewNotification("you don't have enough coins!"); 
                         //when player dont have enough coins to buy + the player is buying, then show this //Tien-Yi
                     }

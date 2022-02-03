@@ -21,7 +21,7 @@ public class SP_PirateSpawner : MonoBehaviour
     [SerializeField]
     private List<float> SpawnTimers;
     [SerializeField]
-    private List<string> CharacterToSpawn;    
+    private List<string> CharacterToSpawn;
 
     private void Awake()
     {
@@ -47,9 +47,9 @@ public class SP_PirateSpawner : MonoBehaviour
     //Then it checks and spawns any enemies that need to be spawned
     private IEnumerator TimerCounter()
     {
-        Timer = Time.time;
         CheckEnemySpawn();
         yield return new WaitForSeconds(WaitTime);
+        Timer += WaitTime;
         StartCoroutine(TimerCounter());
     }
 

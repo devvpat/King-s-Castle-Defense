@@ -371,8 +371,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Special Effect:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
+  m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -607,8 +608,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Pirates Win!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
+  m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -671,7 +673,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &197671205
@@ -741,8 +743,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit to Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
+  m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -805,7 +808,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &210116606
@@ -1008,8 +1011,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Buy Level 4 Defender (25)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
+  m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1173,8 +1177,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit to Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
+  m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1237,7 +1242,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &347077110
@@ -7364,8 +7369,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Buy Level 5 Defender (40)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
+  m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7604,8 +7610,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Buy Level 1 Defender (5)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
+  m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8237,8 +8244,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Buy Level 2 Defender (10)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
+  m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8358,9 +8366,49 @@ MonoBehaviour:
   WaitTime: 0.5
   SpawnTimers:
   - 0
-  - 0
+  - 5
+  - 5
+  - 12
+  - 12
+  - 12
+  - 17
+  - 25
+  - 25
+  - 25
+  - 28
+  - 28
+  - 34
+  - 34
+  - 40
+  - 40
+  - 50
+  - 50
+  - 50
+  - 50
+  - 50
+  - 60
   CharacterToSpawn:
   - P1
+  - P1
+  - P1
+  - P1
+  - P1
+  - P2
+  - P3
+  - P1
+  - P1
+  - P1
+  - P2
+  - P2
+  - P3
+  - P3
+  - P4
+  - P4
+  - P3
+  - P3
+  - P4
+  - P5
+  - P5
   - PKing
 --- !u!1 &1070809047
 GameObject:
@@ -20499,8 +20547,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Play Again
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
+  m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -20563,7 +20612,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1304915733
@@ -20633,8 +20682,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Play Again
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
+  m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -20697,7 +20747,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1312532754
@@ -20767,8 +20817,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: The Castle Wins!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
+  m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -20831,7 +20882,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1476026130
@@ -20901,8 +20952,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Buy Level 3 Defender (15)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
+  m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -21807,8 +21859,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Score: 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
+  m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -22238,8 +22291,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Coins: 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
+  m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

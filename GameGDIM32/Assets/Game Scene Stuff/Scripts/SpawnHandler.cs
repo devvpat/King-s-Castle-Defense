@@ -20,7 +20,6 @@ public class SpawnHandler : MonoBehaviour
     //Spawn castle characters
     public static void Spawn_C1() 
     {
-        Debug.Log(AllowSpawn);
         if (AllowSpawn)
         {
             string characterType = CharacterManager._instance.CharacterName[0];
