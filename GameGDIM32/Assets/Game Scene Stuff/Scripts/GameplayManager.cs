@@ -66,6 +66,58 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
+    //Looking into if there is a cleaner way to do this...
+    private void Update()
+    {
+        //Using Unity's InputManager to check if a certain button is pressed
+        if (Input.GetButtonDown("PauseToggle"))
+        {
+            GameStateManager.instance.TogglePause();   
+        }
+        if (GameStateManager.state == GameStateManager.GameState.Playing)
+        {
+            if (Input.GetButtonDown("SpawnCastle1"))
+            {
+                CharacterManager._instance.SpawnCharacter("C1", 1);
+            }
+            if (Input.GetButtonDown("SpawnCastle2"))
+            {
+                CharacterManager._instance.SpawnCharacter("C2", 1);
+            }
+            if (Input.GetButtonDown("SpawnCastle3"))
+            {
+                CharacterManager._instance.SpawnCharacter("C3", 1);
+            }
+            if (Input.GetButtonDown("SpawnCastle4"))
+            {
+                CharacterManager._instance.SpawnCharacter("C4", 1);
+            }
+            if (Input.GetButtonDown("SpawnCastle5"))
+            {
+                CharacterManager._instance.SpawnCharacter("C5", 1);
+            }
+            if (Input.GetButtonDown("SpawnPirate1"))
+            {
+                CharacterManager._instance.SpawnCharacter("P1", 2);
+            }
+            if (Input.GetButtonDown("SpawnPirate2"))
+            {
+                CharacterManager._instance.SpawnCharacter("P2", 2);
+            }
+            if (Input.GetButtonDown("SpawnPirate3"))
+            {
+                CharacterManager._instance.SpawnCharacter("P3", 2);
+            }
+            if (Input.GetButtonDown("SpawnPirate4"))
+            {
+                CharacterManager._instance.SpawnCharacter("P4", 2);
+            }
+            if (Input.GetButtonDown("SpawnPirate5"))
+            {
+                CharacterManager._instance.SpawnCharacter("P5", 2);
+            }
+        }
+    }
 
     //Two methods for winning that have same body because in the future, each one will display a unique message/picture
     private void PirateWin()

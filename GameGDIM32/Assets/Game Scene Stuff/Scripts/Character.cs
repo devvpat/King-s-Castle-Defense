@@ -2,6 +2,7 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 //Leaf part of the ICharacter composite pattern
 public class Character : MonoBehaviour, ICharacter
@@ -20,14 +21,24 @@ public class Character : MonoBehaviour, ICharacter
 
     private float TimeBetweenAttacks;
 
+    [SerializeField]
+    private Image HealthBar;
+
     public CharacterData CharacterStats;
 
     private void Start()
     {
         ResetStats();
         TimeBetweenAttacks = 0.5f;
+        HealthBar.fillAmount = (float)Health / CharacterStats.StartingHealth;
         //If the character is not the castle king, use the normal attack function; the king is not meant to attack
         if (!IsKing || IsPirate) Invoke("Attack", 1);
+    }
+
+    //
+    private void FindHealthBar()
+    {
+
     }
 
     private void ResetStats()
@@ -70,11 +81,14 @@ public class Character : MonoBehaviour, ICharacter
                 else Die();
             }
         }
-        //if the damage is a negative number, treat it as a heal
+        //if the damage is a negative number, treat it as a heal and make sure current health doesnt go above starting health
         else
         {
             Health -= damage;
+            if (Health > CharacterStats.StartingHealth) Health = CharacterStats.StartingHealth;
         }
+        //update healthbar
+        HealthBar.fillAmount = (float)Health / CharacterStats.StartingHealth;
     }
 
     //remove from respective armylist and delete object on death, and grant killing player coins equals to half the cost of the unit (floored)

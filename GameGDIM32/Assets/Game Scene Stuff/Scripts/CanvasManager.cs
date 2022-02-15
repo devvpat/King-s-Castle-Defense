@@ -26,6 +26,9 @@ public class CanvasManager : MonoBehaviour
     [SerializeField]
     private GameObject CastleWinCanvas;
 
+    [SerializeField]
+    private GameObject PauseMenuCanvas;
+
     public delegate void Data();
     public Data UpdateDisplayedData;
 
@@ -74,6 +77,11 @@ public class CanvasManager : MonoBehaviour
     {
         PirateWinCanvas.SetActive(true);
         CastleWinCanvas.SetActive(false);
+    }
+
+    public void TogglePauseMenuCanvas()
+    {
+        PauseMenuCanvas.SetActive(!PauseMenuCanvas.activeSelf);
     }
 
     public void SP_UpdateScore()

@@ -19,7 +19,7 @@ public class GameStateManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(instance);
-            GameStateManager.state = GameState.Menu;
+            state = GameState.Menu;
         }
         else
         {
@@ -31,22 +31,47 @@ public class GameStateManager : MonoBehaviour
 
     public enum GameState //list gamestates
     {
-        Menu, Playing
+        Menu, Playing, Paused
     }
 
-    public static void NewGame() //starting a new game
+    //Method added by Dev Patel
+    public void TogglePause()
+    {
+        //for unpausing
+        if (state == GameState.Paused)
+        {
+            Time.timeScale = 1;
+            state = GameState.Playing;
+            CanvasManager._instance.TogglePauseMenuCanvas();
+        }
+        //for pausing
+        else
+        {
+            state = GameState.Paused;
+            Time.timeScale = 0;
+            CanvasManager._instance.TogglePauseMenuCanvas();
+        }
+    }
+
+    //Following 4 methods created by both Dev Patel and Tien-Yi Lee
+    public void NewGame() //starting a new game
     {
         state = GameState.Playing;
         SceneManager.LoadScene(GameStateManager.instance.GameSceneName);
     }
 
-    public static void QuitToTitle() //moving back to the MENU
+    public void QuitToTitle() //moving back to the MENU
     {
+        if (state == GameState.Paused)
+        {
+            GameStateManager.instance.TogglePause(); //added by Dev Patel - turns off pause then quits to title
+        }
         state = GameState.Menu;
         SceneManager.LoadScene(GameStateManager.instance.MenuSceneName);
     }
 
-    
-
-        
+    public void QuitGame() //quit button on MENU
+    {
+        Application.Quit(); //Quit the game
+    }
 }

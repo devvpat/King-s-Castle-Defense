@@ -28,9 +28,18 @@ public class Army : MonoBehaviour, ICharacter
 
     public void TakeDamage(int damage)
     {
-        foreach (ICharacter character in ArmyList)
+        //because the character's in armylist can change while this is running, try this while catching InvalidOperationExceptions
+        try
         {
-            character.TakeDamage(damage);
+            foreach (ICharacter character in ArmyList)
+            {
+                character.TakeDamage(damage);
+            }
+        }
+        catch (Exception e)
+        {
+            if (e.GetType() == typeof(InvalidOperationException)) Debug.Log("Armylist was changed:\n" + e.Message);
+            else Debug.Log(e.Message);
         }
     }
 
@@ -61,41 +70,50 @@ public class Army : MonoBehaviour, ICharacter
 
     public GameObject GetRandomUnit()
     {
-        if (ArmyList.Count > 0)
+        try
         {
-            if (!IsPirate)
+            if (ArmyList.Count > 0)
             {
-                //when getting a random castle character, if there are less than or equal to 3 characters in the castle armylist (including king),
-                //there's a chance the method will return the king. otherwise (when there are 4 or more castle characters),
-                //never return the king
-                GameObject obj = (ArmyList[UnityEngine.Random.Range(0, ArmyList.Count)]).GetCharacter().gameObject;
-                if (ArmyList.Count <= 3)
+                if (!IsPirate)
                 {
-                    if (CharacterManager._instance.CKD.GetCharacter() != null && UnityEngine.Random.Range(0, 99) < (1 / (ArmyList.Count)) * 100)
+                    //when getting a random castle character, if there are less than or equal to 3 characters in the castle armylist (including king),
+                    //there's a chance the method will return the king. otherwise (when there are 4 or more castle characters),
+                    //never return the king
+                    GameObject obj = (ArmyList[UnityEngine.Random.Range(0, ArmyList.Count)]).GetCharacter().gameObject;
+                    if (ArmyList.Count <= 3)
                     {
-                        obj = CharacterManager._instance.CKD.GetCharacter().gameObject;
-                    }
-                    else
-                    {
-                        Character objChar = obj.GetComponent<Character>();
-                        while (objChar.CharacterStats.IsKing)
+                        if (CharacterManager._instance.CKD.GetCharacter() != null && UnityEngine.Random.Range(0, 99) < (1 / (ArmyList.Count)) * 100)
                         {
-                            obj = (ArmyList[UnityEngine.Random.Range(0, ArmyList.Count)]).GetCharacter().gameObject;
-                            objChar = obj.GetComponent<Character>();
+                            obj = CharacterManager._instance.CKD.GetCharacter().gameObject;
+                        }
+                        else
+                        {
+                            Character objChar = obj.GetComponent<Character>();
+                            while (objChar.CharacterStats.IsKing)
+                            {
+                                obj = (ArmyList[UnityEngine.Random.Range(0, ArmyList.Count)]).GetCharacter().gameObject;
+                                objChar = obj.GetComponent<Character>();
+                            }
                         }
                     }
+                    //in the case there is no valid target, return an empty object (as in one that is from CreateAssestMenu > Create Empty)
+                    if (obj != null) return obj;
+                    else return Empty;
                 }
-                //in the case there is no valid target, return an empty object (as in one that is from CreateAssestMenu > Create Empty)
-                if (obj != null) return obj;
-                else return Empty;
+                //always return a random pirate if the pirate armylist isn't empty
+                return (ArmyList[UnityEngine.Random.Range(0, ArmyList.Count)]).GetCharacter().gameObject;
             }
-            //always return a random pirate if the pirate armylist isn't empty
-            return (ArmyList[UnityEngine.Random.Range(0, ArmyList.Count)]).GetCharacter().gameObject;
+            else
+            {
+                return Empty;
+            }
         }
-        else
+        catch (Exception e)
         {
-            return Empty;
+            if (e.GetType() == typeof(MissingReferenceException)) Debug.Log("Character was destroyed:\n" + e.Message);
+            else Debug.Log(e.Message);
         }
+        return GetRandomUnit();
     }
 
     public void RemoveUnit(Character character)
