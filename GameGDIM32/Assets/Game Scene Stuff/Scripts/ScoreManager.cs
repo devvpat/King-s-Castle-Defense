@@ -33,18 +33,18 @@ public class ScoreManager : MonoBehaviour
     public void StartScoreCount()
     {
         bool solo = GameplayManager._instance.SoloMode;
-        StartCoroutine(IncreaseScore(WaitTime, solo));    
+        StartCoroutine(IncreaseScore(solo));    
     }
 
     //Solomode increments on player 1's score, multiplayer mode increments both players scores (stored in Scores array)
-    private IEnumerator IncreaseScore(float WaitTime, bool solo)
+    private IEnumerator IncreaseScore(bool solo)
     {
         if (solo)
         {
             Scores[0] += 1;
             CanvasManager._instance.UpdateDisplayedData();
             yield return new WaitForSeconds(WaitTime);
-            StartCoroutine(IncreaseScore(WaitTime, solo));
+            StartCoroutine(IncreaseScore(solo));
         }
         else
         {
@@ -54,7 +54,7 @@ public class ScoreManager : MonoBehaviour
             }
             CanvasManager._instance.UpdateDisplayedData();
             yield return new WaitForSeconds(WaitTime);
-            StartCoroutine(IncreaseScore(WaitTime, solo));
+            StartCoroutine(IncreaseScore(solo));
         }
     }
 }

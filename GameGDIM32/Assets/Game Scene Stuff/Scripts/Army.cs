@@ -33,7 +33,8 @@ public class Army : MonoBehaviour, ICharacter
         {
             foreach (ICharacter character in ArmyList)
             {
-                character.TakeDamage(damage);
+                //deal damage to each character except the kings
+                if (!character.GetCharacter().CharacterStats.IsKing) character.TakeDamage(damage);
             }
         }
         catch (Exception e)
@@ -113,7 +114,7 @@ public class Army : MonoBehaviour, ICharacter
             if (e.GetType() == typeof(MissingReferenceException)) Debug.Log("Character was destroyed:\n" + e.Message);
             else Debug.Log(e.Message);
         }
-        return GetRandomUnit();
+        return Empty;
     }
 
     public void RemoveUnit(Character character)

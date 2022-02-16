@@ -30,7 +30,7 @@ public class CharacterManager : MonoBehaviour
     [SerializeField]
     private Vector3 PirateKingSpawn;
 
- 
+    public float MP_PirateKingSpawnTime;
 
     public KingCharacterDecorator CKD { get; private set; }
     public KingCharacterDecorator PKD { get; private set; }
@@ -54,7 +54,9 @@ public class CharacterManager : MonoBehaviour
         DestroyAllChildren(CastleArmy);
         PirateArmyComp = PirateArmy.GetComponent<Army>();
         DestroyAllChildren(PirateArmy);
-        InitialSpawn();
+        //always spawn caslte king, spawn additional guards if in singleplayer
+        SpawnCharacter("CKing", 1);
+        if (GameplayManager._instance.SoloMode) SoloInitialSpawn();
     }
 
     //Clears all characters in case some are alive when they shouldn't be (during setup)
@@ -67,11 +69,15 @@ public class CharacterManager : MonoBehaviour
     }
 
     //spawns the king as well as 2 castle troops before the first enemies spawn
-    private void InitialSpawn()
+    private void SoloInitialSpawn()
     {
-        SpawnCharacter("CKing", 1);
         Spawn(1);
         Spawn(1);
+    }
+
+    public void MP_SpawnPirateKing()
+    {
+        SpawnCharacter("PKing", 2);
     }
 
     //takes the characterName and references the CharacterName list to find the corresponding index in the CharacterPrefab list
@@ -99,17 +105,18 @@ public class CharacterManager : MonoBehaviour
                         CanvasManager._instance.UpdateDisplayedData();
                         Spawn(index);
                     }
-                    else
-                    {
-                        NotificationManager.Instance.SetNewNotification("you don't have enough coins!"); 
-                        //when player dont have enough coins to buy + the player is buying, then show this //Tien-Yi
-                    }
                 }
                 else if (CoinManager._instance.Coins[player - 1] >= characterCharComp.CharacterStats.Cost)
                 {
                     CoinManager._instance.Coins[player - 1] -= characterCharComp.CharacterStats.Cost;
                     CanvasManager._instance.UpdateDisplayedData();
                     Spawn(index);
+                }
+                //if there is not enough coins to spawn, display a notification
+                else
+                {
+                    NotificationManager.Instance.SetNewNotification("you don't have enough coins!");
+                    //when player dont have enough coins to buy + the player is buying, then show this //Tien-Yi
                 }
             }            
         }

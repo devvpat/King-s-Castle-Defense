@@ -44,10 +44,8 @@ public class GameplayManager : MonoBehaviour
 
     private void SelfSetup()
     {
-        //Game only has singleplayer functionality right now, so solomode should always be true
-        //if (PlayerPrefs.GetInt("SoloMode") > 0) SoloMode = true;
-        //else SoloMode = false;
-        SoloMode = true;
+        if (PlayerPrefs.GetInt("SoloMode") > 0) SoloMode = true;
+        else SoloMode = false;
     }
 
     private void SetupOthersManagers()
@@ -60,10 +58,11 @@ public class GameplayManager : MonoBehaviour
         SpecialEffectManager._instance.Setup();
         if (SoloMode)
         {
-            //On solomode, turn off button spawner on loss and setup singleplayer pirate spawner
-            OnPirateWin += SpawnHandler.DisableSpawn;
+            //On solomode, setup singleplayer pirate spawner
             SP_PirateSpawner._instance.Setup();
         }
+        OnCastleWin += SpawnHandler.DisableSpawn;
+        OnPirateWin += SpawnHandler.DisableSpawn;
     }
 
     //Looking into if there is a cleaner way to do this...

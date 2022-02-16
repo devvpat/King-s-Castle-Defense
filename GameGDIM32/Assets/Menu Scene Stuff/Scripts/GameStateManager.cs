@@ -54,8 +54,20 @@ public class GameStateManager : MonoBehaviour
     }
 
     //Following 4 methods created by both Dev Patel and Tien-Yi Lee
-    public void NewGame() //starting a new game
+    public void NewGame(bool singlePlayer) //starting a new game
     {
+        if (singlePlayer) PlayerPrefs.SetInt("SoloMode", 1);
+        else PlayerPrefs.SetInt("SoloMode", 0);
+        state = GameState.Playing;
+        SceneManager.LoadScene(GameStateManager.instance.GameSceneName);
+    }
+
+    public void RestartGameScene()
+    {
+        if (state == GameState.Paused)
+        {
+            GameStateManager.instance.TogglePause();
+        }
         state = GameState.Playing;
         SceneManager.LoadScene(GameStateManager.instance.GameSceneName);
     }

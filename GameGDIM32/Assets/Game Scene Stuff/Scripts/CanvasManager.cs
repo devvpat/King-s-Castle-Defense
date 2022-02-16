@@ -1,5 +1,6 @@
 //Class written by: Dev Patel
 
+using System.Collections;
 using UnityEngine;
 
 public class CanvasManager : MonoBehaviour
@@ -20,6 +21,10 @@ public class CanvasManager : MonoBehaviour
     private TMPro.TextMeshProUGUI[] MP_ScoreText;
     [SerializeField]
     private TMPro.TextMeshProUGUI[] MP_CoinText;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI MP_PirateKingInfo;
+    [SerializeField]
+    private float TimeToDisablePirateKingInfo;
 
     [SerializeField]
     private GameObject PirateWinCanvas;
@@ -62,9 +67,23 @@ public class CanvasManager : MonoBehaviour
             MultiplayerCanvas.SetActive(true);
             UpdateDisplayedData = CanvasManager._instance.MP_UpdateScore;
             UpdateDisplayedData += CanvasManager._instance.MP_UpdateCoins;
+            StartCoroutine(MP_PirateKingInfoDisplay());
         }
         GameplayManager._instance.OnPirateWin += EnablePirateWinCanvas;
         GameplayManager._instance.OnCastleWin += EnableCastleWinCanvas;        
+    }
+
+    private IEnumerator MP_PirateKingInfoDisplay()
+    {
+        MP_PirateKingInfo.gameObject.SetActive(true);
+        MP_PirateKingInfo.text = $"Pirate King will spawn in {CharacterManager._instance.MP_PirateKingSpawnTime} seconds";
+        yield return new WaitForSeconds(TimeToDisablePirateKingInfo);
+        MP_PirateKingInfo.text = "";
+        yield return new WaitForSeconds(CharacterManager._instance.MP_PirateKingSpawnTime - TimeToDisablePirateKingInfo);
+        MP_PirateKingInfo.text = $"Pirate King spawning!";
+        yield return new WaitForSeconds(1);
+        MP_PirateKingInfo.text = "";
+        CharacterManager._instance.MP_SpawnPirateKing();
     }
 
     private void EnableCastleWinCanvas()
@@ -96,11 +115,13 @@ public class CanvasManager : MonoBehaviour
 
     public void MP_UpdateScore()
     {
-        //to be implemented
+        MP_ScoreText[0].text = "Score: " + ScoreManager._instance.Scores[0];
+        MP_ScoreText[1].text = "Score: " + ScoreManager._instance.Scores[1];
     }
 
     public void MP_UpdateCoins()
     {
-        //to be implemented
+        MP_CoinText[0].text = "Coins: " + CoinManager._instance.Coins[0];
+        MP_CoinText[1].text = "Coins: " + CoinManager._instance.Coins[1];
     }
 }

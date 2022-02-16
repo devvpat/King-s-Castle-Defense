@@ -118,19 +118,28 @@ public class SpecialEffectManager : MonoBehaviour
         int r = Random.Range(0, 3);
         if (r == 0)
         {
+            //sending in new character (even though you cant create monobehaviors using new) because this
+            //special effect will be using the Army composite to deal damage to each character in it
             SE_TD.Effect(new Character());
         }
         else
         {
+            //do a special effect on everything but the kings
             foreach (ICharacter character in CastleArmy.ArmyList)
             {
-                if (r == 1) SE_Group_1.Effect(character.GetCharacter());
-                if (r == 2) SE_Group_2.Effect(character.GetCharacter());
+                if (!character.GetCharacter().CharacterStats.IsKing)
+                {
+                    if (r == 1) SE_Group_1.Effect(character.GetCharacter());
+                    if (r == 2) SE_Group_2.Effect(character.GetCharacter());
+                }
             }
             foreach (ICharacter character in PirateArmy.ArmyList)
             {
-                if (r == 1) SE_Group_1.Effect(character.GetCharacter());
-                if (r == 2) SE_Group_2.Effect(character.GetCharacter());
+                if (!character.GetCharacter().CharacterStats.IsKing)
+                {
+                    if (r == 1) SE_Group_1.Effect(character.GetCharacter());
+                    if (r == 2) SE_Group_2.Effect(character.GetCharacter());
+                }
             }
         }
         StartCoroutine(DisplaySpecialEffect(r));
