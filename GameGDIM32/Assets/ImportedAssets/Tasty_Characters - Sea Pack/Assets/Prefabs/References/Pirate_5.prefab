@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4805547246895378}
   - component: {fileID: 212723231056231366}
   - component: {fileID: -7836533655903273104}
+  - component: {fileID: 8237682977044417189}
   m_Layer: 0
   m_Name: Pirate_5
   m_TagString: Player
@@ -98,6 +99,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 8212110897242955446}
   CharacterStats: {fileID: 11400000, guid: 95b14482fe4ae2d41aae7c5d6557ca59, type: 2}
+--- !u!195 &8237682977044417189
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572174039860298}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.685
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.00001
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1364936297045867846
 GameObject:
   m_ObjectHideFlags: 0

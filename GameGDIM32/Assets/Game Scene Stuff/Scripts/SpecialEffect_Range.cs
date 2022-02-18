@@ -13,6 +13,6 @@ public class SpecialEffect_Range : ISpecialEffect
     public void Effect(ICharacter character)
     {
         float rangeChange = Random.Range(minAttackRangeChange, maxAttackRangeChange + 1);
-        (character as Character).Range += rangeChange;
+        (character as Character).ChangeRange(rangeChange);
     }
 }

@@ -3,13 +3,14 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 //Leaf part of the ICharacter composite pattern
 public class Character : MonoBehaviour, ICharacter
 {
     public int Health { get; set; }
     public int Damage { get; set; }
-    //damage the character negates upon being attacked
+    //damage the character negates upon being attacked, can be negative = take more damage (vulnerable)
     public int Resistance { get; set; }
     //attack range
     public float Range { get; set; }
@@ -26,19 +27,62 @@ public class Character : MonoBehaviour, ICharacter
 
     public CharacterData CharacterStats;
 
+    //Using NavMesh 2D Package by h8man for agent stuff
+    private NavMeshAgent Agent;
+
+    private float DelayBetweenAttack = 1;
+
+    private float Agent_StoppingDistance = 0;
+    private float Agent_Radius = 0.1f;
+    private float Agent_Acceleration = 3.5f;
+
+    private float MinRange = 0.1f;
+
     private void Start()
     {
         ResetStats();
+        SetupAgent();
+        transform.rotation = Quaternion.identity;
         TimeBetweenAttacks = 0.5f;
         HealthBar.fillAmount = (float)Health / CharacterStats.StartingHealth;
         //If the character is not the castle king, use the normal attack function; the king is not meant to attack
-        if (!IsKing || IsPirate) Invoke("Attack", 1);
+        if (!IsKing || IsPirate) Invoke("Attack", DelayBetweenAttack);
     }
 
-    //
-    private void FindHealthBar()
+    private void SetupAgent()
     {
+        Agent = this.GetComponent<NavMeshAgent>();
+        if (Agent != null)
+        {
+            Agent.updateRotation = false;
+            Agent.updateUpAxis = false;
+            Agent.speed = SpeedMod;
+            Agent.stoppingDistance = Agent_StoppingDistance;
+            Agent.radius = Agent_Radius;
+            Agent.acceleration = Agent_Acceleration;
+        }
+    }
 
+    //changes speedmod and ensures it is not below 0
+    public void ChangeSpeedMod(float speed)
+    {
+        SpeedMod += speed;
+        SpeedMod = Mathf.Max(SpeedMod, 0);
+        Agent.speed = SpeedMod;
+    }
+
+    //changes attack damage and ensures it is not below 0
+    public void ChangeAttackDamage(int damage)
+    {
+        Damage += damage;
+        Damage = Mathf.Max(Damage, 0);
+    }
+
+    //changes range and ensures it is not below min attack range
+    public void ChangeRange(float range)
+    {
+        Range += range;
+        Range = Mathf.Max(Range, MinRange);
     }
 
     private void ResetStats()
@@ -77,7 +121,7 @@ public class Character : MonoBehaviour, ICharacter
             {
                 //Both kings (pirate and castle) have a decorator, so call their decorator's death method instead of the base character death method
                 if (IsKing && !IsPirate) CharacterManager._instance.CKD.Die();
-                if (IsKing && IsPirate) CharacterManager._instance.PKD.Die();
+                else if (IsKing && IsPirate) CharacterManager._instance.PKD.Die();
                 else Die();
             }
         }
@@ -118,12 +162,12 @@ public class Character : MonoBehaviour, ICharacter
         //if an enemy is found, the character moves to the enemy then attacks it
         if (enemy.tag == "Player")
         {
-            StartCoroutine(MoveToObject(enemy));
+            StartCoroutine(MoveToTarget(enemy));
         } 
         //try again to find an enemy if an appropriate enemy isn't found
         else
         {
-            Invoke("Attack", 1);
+            Invoke("Attack", DelayBetweenAttack);
         }        
     }
 
@@ -142,18 +186,39 @@ public class Character : MonoBehaviour, ICharacter
         return enemy;
     }
 
-    //moves the character toward the enemy until they are within their attack range
-    private IEnumerator MoveToObject(GameObject enemy)
+    //because a lot of agents are in the game at once and because they can die mid-activity, there are a lot of checks
+    //to see if they are alive to not break anything. I'm unsure of a better solution than to constantly check so until I find one
+    //(if i can), i simply implemented many checks
+    private IEnumerator MoveToTarget(GameObject enemy)
     {
+        if (Agent != null && Agent.isActiveAndEnabled)
+        {
+            //make sure the agent can move (is stopped = false)
+            Agent.isStopped = false;
+        }
         while (enemy != null && Vector2.Distance(transform.position, enemy.transform.position) > Range)
         {
-            transform.position = Vector2.MoveTowards(transform.position, enemy.transform.position, SpeedMod * Time.deltaTime);
-            yield return null;
+            //Every now and then this error shows up:
+            //"Set Destination" can only be called on an active agent that has been placed on a navmesh
+            //Which is why I added many checks to make sure this doesnt happen
+            if (Agent != null && Agent.isActiveAndEnabled && 
+                enemy != null && Agent.SetDestination(enemy.transform.position)) yield return null;
+            //transform.position = Vector2.MoveTowards(transform.position, enemy.transform.position, SpeedMod * Time.deltaTime);
+            else
+            {
+                Invoke("Attack", DelayBetweenAttack);                
+                yield break;
+            }
         }
-        StartCoroutine(Attack_DealDamageToEnemy(enemy));    
+        //make sure the agent cant move once in desired range of enemy
+        if (Agent != null && Agent.isActiveAndEnabled)
+        {
+            Agent.velocity = Vector3.zero;
+            Agent.isStopped = true;
+            StartCoroutine(Attack_DealDamageToEnemy(enemy));
+        }
     }
 
-    //
     private IEnumerator Attack_DealDamageToEnemy(GameObject enemy)
     {
         Character enemyCharComp = null;
@@ -163,7 +228,7 @@ public class Character : MonoBehaviour, ICharacter
         }        
         if (enemyCharComp != null)
         {
-            //first hit the enemy (because the enemy is in the character's attack range due to the MoveToObject coroutine)
+            //first hit the enemy (because the enemy is in the character's attack range due to the MoveToTarget coroutine)
             enemyCharComp.TakeDamage(Damage);
             yield return new WaitForSeconds(TimeBetweenAttacks);
             //continously hit the enemy while they remain in range every x seconds and aren't dead
@@ -179,7 +244,7 @@ public class Character : MonoBehaviour, ICharacter
         //if the enemy isn't dead/not found but out of range, go to it again
         if (enemyCharComp != null && Vector2.Distance(transform.position, enemy.transform.position) > Range)
         {
-            StartCoroutine(MoveToObject(enemy));
+            StartCoroutine(MoveToTarget(enemy));
             yield break;
         }
         //in the case the enemy dies, stop trying to attack it and search for a new enemy to attack

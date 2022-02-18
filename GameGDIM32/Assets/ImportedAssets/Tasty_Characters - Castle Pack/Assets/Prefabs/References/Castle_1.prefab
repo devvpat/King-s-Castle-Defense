@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4421900341329478}
   - component: {fileID: 212327661687109368}
   - component: {fileID: -964919019395105403}
+  - component: {fileID: 5232801874467054906}
   m_Layer: 0
   m_Name: Castle_1
   m_TagString: Player
@@ -98,6 +99,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 5073457328516018669}
   CharacterStats: {fileID: 11400000, guid: 4e37dd5caf275fa4e968a0bb6e5dc0bd, type: 2}
+--- !u!195 &5232801874467054906
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252300943239936}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.64
+  m_Speed: 3.5
+  m_Acceleration: 0
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.00001
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5325127968906189138
 GameObject:
   m_ObjectHideFlags: 0

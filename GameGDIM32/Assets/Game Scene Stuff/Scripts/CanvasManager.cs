@@ -73,6 +73,10 @@ public class CanvasManager : MonoBehaviour
         GameplayManager._instance.OnCastleWin += EnableCastleWinCanvas;        
     }
 
+    //even though this method spawns the pirate king which really should be done/called in the CharacterManager itself,
+    //it seems a bit repetive to make a method in CharacterManager that calls all this display method,
+    //then waits for the display time to be over just to call the pirate king spawn, so I felt like
+    //it was simpler to add the method call to spawn the pirate king here
     private IEnumerator MP_PirateKingInfoDisplay()
     {
         MP_PirateKingInfo.gameObject.SetActive(true);

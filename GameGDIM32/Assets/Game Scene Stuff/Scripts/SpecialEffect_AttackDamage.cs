@@ -13,6 +13,6 @@ public class SpecialEffect_AttackDamage : ISpecialEffect
     public void Effect(ICharacter character)
     {
         int damageChange = Random.Range(minAttackDamageChange, maxAttackDamageChange + 1);
-        (character as Character).Damage += damageChange;
+        (character as Character).ChangeAttackDamage(damageChange);
     }
 }

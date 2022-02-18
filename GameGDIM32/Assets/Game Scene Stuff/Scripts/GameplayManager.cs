@@ -95,23 +95,23 @@ public class GameplayManager : MonoBehaviour
             {
                 CharacterManager._instance.SpawnCharacter("C5", 1);
             }
-            if (Input.GetButtonDown("SpawnPirate1"))
+            if (Input.GetButtonDown("SpawnPirate1") && !SoloMode)
             {
                 CharacterManager._instance.SpawnCharacter("P1", 2);
             }
-            if (Input.GetButtonDown("SpawnPirate2"))
+            if (Input.GetButtonDown("SpawnPirate2") && !SoloMode)
             {
                 CharacterManager._instance.SpawnCharacter("P2", 2);
             }
-            if (Input.GetButtonDown("SpawnPirate3"))
+            if (Input.GetButtonDown("SpawnPirate3") && !SoloMode)
             {
                 CharacterManager._instance.SpawnCharacter("P3", 2);
             }
-            if (Input.GetButtonDown("SpawnPirate4"))
+            if (Input.GetButtonDown("SpawnPirate4") && !SoloMode)
             {
                 CharacterManager._instance.SpawnCharacter("P4", 2);
             }
-            if (Input.GetButtonDown("SpawnPirate5"))
+            if (Input.GetButtonDown("SpawnPirate5") && !SoloMode)
             {
                 CharacterManager._instance.SpawnCharacter("P5", 2);
             }

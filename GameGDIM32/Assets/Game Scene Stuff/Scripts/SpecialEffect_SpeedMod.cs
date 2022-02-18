@@ -13,6 +13,6 @@ public class SpecialEffect_SpeedMod : ISpecialEffect
     public void Effect(ICharacter character)
     {
         float speedModChange = Random.Range(minSpeedModChange, maxSpeedModChange + 1);
-        (character as Character).SpeedMod += speedModChange;
+        (character as Character).ChangeSpeedMod(speedModChange);
     }
 }
