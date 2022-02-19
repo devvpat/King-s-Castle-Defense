@@ -127,5 +127,12 @@ public class GameplayManager : MonoBehaviour
     private void CastleWin()
     {
         Time.timeScale = 0;
+        if (SoloMode)
+        {
+            int score = ScoreManager._instance.Scores[0];
+            int highScore = PlayerPrefs.GetInt("SoloHighScore");
+            PlayerPrefs.SetInt("SoloHighScore", Mathf.Max(score, highScore));
+            PlayerPrefs.SetInt("SoloWins", PlayerPrefs.GetInt("SoloWins") + 1);
+        }
     }
 }

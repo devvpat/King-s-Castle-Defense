@@ -20,6 +20,7 @@ public class GameStateManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(instance);
             state = GameState.Menu;
+            PlayerPrefs.DeleteAll();
         }
         else
         {

@@ -1,9 +1,0 @@
-todo:
-add weather
-
-damage character*
-resistance lower*
-damage reduce*
-
-spawn random
-speedmod lower

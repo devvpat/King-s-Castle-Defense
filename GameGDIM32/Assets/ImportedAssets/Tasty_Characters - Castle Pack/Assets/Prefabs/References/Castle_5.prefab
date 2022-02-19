@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 212327661687109368}
   - component: {fileID: 7925974510095922052}
   - component: {fileID: -3468491168443993318}
+  - component: {fileID: 7679943285033407196}
   m_Layer: 0
   m_Name: Castle_5
   m_TagString: Player
@@ -121,6 +122,25 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &7679943285033407196
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252300943239936}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 90cb489011c86c84c8d47a8e308fc296, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1135846612047632290
 GameObject:
   m_ObjectHideFlags: 0

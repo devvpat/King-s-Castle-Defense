@@ -69,40 +69,30 @@ public class Army : MonoBehaviour, ICharacter
         return new Character();
     }
 
-    public GameObject GetRandomUnit()
+    //Thanks to edwardrowe (post #4) in https://forum.unity.com/threads/clean-est-way-to-find-nearest-object-of-many-c.44315/
+    //for help with the code to find the closest object based on a point. I had the general idea of starting with min dist = infinity and closestobj = null,
+    //then updating those with better objects as i traversed through ArmyList, but i didn't know exactly how that code would look (and that .sqrMagnitude is faster than just .distance),
+    //so i used the code posted edwardrowe in the linked thread
+    public GameObject GetClosetUnit(Vector2 originPos)
     {
         try
         {
             if (ArmyList.Count > 0)
             {
-                if (!IsPirate)
+                GameObject closetObj = null;
+                float closetDist = Mathf.Infinity;
+                foreach (ICharacter character in ArmyList)
                 {
-                    //when getting a random castle character, if there are less than or equal to 3 characters in the castle armylist (including king),
-                    //there's a chance the method will return the king. otherwise (when there are 4 or more castle characters),
-                    //never return the king
-                    GameObject obj = (ArmyList[UnityEngine.Random.Range(0, ArmyList.Count)]).GetCharacter().gameObject;
-                    if (ArmyList.Count <= 3)
+                    Vector2 dir = (Vector2)character.GetCharacter().gameObject.transform.position - originPos;
+                    float dSqr = dir.sqrMagnitude;
+                    if (dSqr < closetDist)
                     {
-                        if (CharacterManager._instance.CKD.GetCharacter() != null && UnityEngine.Random.Range(0, 99) < (1 / (ArmyList.Count)) * 100)
-                        {
-                            obj = CharacterManager._instance.CKD.GetCharacter().gameObject;
-                        }
-                        else
-                        {
-                            Character objChar = obj.GetComponent<Character>();
-                            while (objChar.CharacterStats.IsKing)
-                            {
-                                obj = (ArmyList[UnityEngine.Random.Range(0, ArmyList.Count)]).GetCharacter().gameObject;
-                                objChar = obj.GetComponent<Character>();
-                            }
-                        }
+                        closetDist = dSqr;
+                        closetObj = character.GetCharacter().gameObject;
                     }
-                    //in the case there is no valid target, return an empty object (as in one that is from CreateAssestMenu > Create Empty)
-                    if (obj != null) return obj;
-                    else return Empty;
                 }
-                //always return a random pirate if the pirate armylist isn't empty
-                return (ArmyList[UnityEngine.Random.Range(0, ArmyList.Count)]).GetCharacter().gameObject;
+                if (closetObj != null) return closetObj;
+                else return Empty;
             }
             else
             {

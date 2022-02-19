@@ -30,6 +30,11 @@ public class ScoreManager : MonoBehaviour
         Scores = new int[2];
     }
 
+    public float GetWaitTime()
+    {
+        return WaitTime;
+    }
+
     public void StartScoreCount()
     {
         bool solo = GameplayManager._instance.SoloMode;

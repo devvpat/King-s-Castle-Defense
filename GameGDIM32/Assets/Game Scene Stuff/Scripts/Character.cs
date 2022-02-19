@@ -20,7 +20,8 @@ public class Character : MonoBehaviour, ICharacter
     public float SpeedMod { get; set; }
     public bool IsKing { get; private set; }
 
-    private float TimeBetweenAttacks;
+    private float TimeBetweenAttacks = 0.5f;
+    private float TimeToPrepare = 1;
 
     [SerializeField]
     private Image HealthBar;
@@ -28,7 +29,7 @@ public class Character : MonoBehaviour, ICharacter
     public CharacterData CharacterStats;
 
     //Using NavMesh 2D Package by h8man for agent stuff
-    private NavMeshAgent Agent;
+    public NavMeshAgent Agent { get; private set; }
 
     private float DelayBetweenAttack = 1;
 
@@ -38,17 +39,41 @@ public class Character : MonoBehaviour, ICharacter
 
     private float MinRange = 0.1f;
 
+    //public so king character decorator can access the AIStates
+    public enum AIState
+    {
+        Prepare, LookForEnemy, GoToEnemy, AttackEnemy, King_StayPut, King_LastDefense, King_Flee
+    }
+
+    //public so king character decorator can access it, the king character doesnt use any of AI states defined in this
+    //class which is why the methods for states in this class are private
+    public AIState State { get; set; }
+
+    //used to keep track of current target
+    private GameObject Enemy;
+
+    //different animation states in the animator depends on the variable "AnimationState" where:
+    //"AnimationState" = 0 -> idle
+    //"AnimationState" = 1 -> walking
+    //"AnimationState" = 2 -> attack
+    public Animator CharAnimator { get; private set; }
+
     private void Start()
     {
         ResetStats();
         SetupAgent();
         transform.rotation = Quaternion.identity;
-        TimeBetweenAttacks = 0.5f;
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         HealthBar.fillAmount = (float)Health / CharacterStats.StartingHealth;
-        //If the character is not the castle king, use the normal attack function; the king is not meant to attack
-        if (!IsKing || IsPirate) Invoke("Attack", DelayBetweenAttack);
+        CharAnimator = this.GetComponent<Animator>();
+        if (CharAnimator != null) CharAnimator.SetInteger("AnimationState", 0);
+        //if the character is not the caslte king, prepare to attack, otherwise (character is castle king) stay put
+        if (!IsKing || IsPirate) State = AIState.Prepare;
+        else State = AIState.King_StayPut;
+        DoCurrentStateAction();
     }
 
+    //sets up NavMeshAgent's options
     private void SetupAgent()
     {
         Agent = this.GetComponent<NavMeshAgent>();
@@ -103,10 +128,56 @@ public class Character : MonoBehaviour, ICharacter
         return CharacterStats.Cost;
     }
 
-    //if the character hasn't been instantiated yet, get ispirate from character data
+    //if the character hasn't been instantiated yet, get is pirate from character data
     public bool GetIsPirate()
     {
         return CharacterStats.IsPirate;
+    }
+
+    public Character GetCharacter()
+    {
+        return this;
+    }
+
+    //A simple finite state machine using an enum (AIState) and switch statement. Due to the relatively limited and simplistic
+    //states (and the fact that there is no plan to add additional states), I felt like it was more appropriate to do implement
+    //the finite state machine like this rather than implementing the entire state pattern using inheritance and multiple classes.
+    //Professor Salmon also agreed that this would be an alright way to implement the finite state machine pattern for this game.
+    private void DoCurrentStateAction()
+    {
+        switch (State)
+        {
+            case AIState.Prepare:
+                StartCoroutine(Prepare());
+                break;
+            case AIState.LookForEnemy:
+                StartCoroutine(FindEnemy());
+                break;
+            case AIState.GoToEnemy:
+                StartCoroutine(MoveToEnemy());
+                break;
+            case AIState.AttackEnemy:
+                StartCoroutine(AttackEnemy());
+                break;
+            case AIState.King_StayPut:
+                //do nothing because the king is to not move (or do anything)
+                break;
+            case AIState.King_LastDefense:
+                //the working method for this is in the king character decorator because its only for the king
+                break;
+            case AIState.King_Flee:
+                //the working method for this is in the king character decorator because its only for the king
+                break;
+        }
+    }
+
+    //makes the character pause before starting the attack sequence, included to reduce the effectiveness of
+    //spam spawning characters
+    private IEnumerator Prepare()
+    {
+        yield return new WaitForSeconds(TimeToPrepare);
+        State = AIState.LookForEnemy;
+        DoCurrentStateAction();
     }
 
     public void TakeDamage(int damage)
@@ -115,8 +186,10 @@ public class Character : MonoBehaviour, ICharacter
         if (damage >= 0)
         {
             damage -= Resistance;
-            if (damage <= 0) damage = 1;
+            //every attack should at least one damage regardless of resistance/original damage
+            damage = Mathf.Max(damage, 1);
             Health -= damage;
+            //in the case a character dies...
             if (Health <= 0)
             {
                 //Both kings (pirate and castle) have a decorator, so call their decorator's death method instead of the base character death method
@@ -129,7 +202,7 @@ public class Character : MonoBehaviour, ICharacter
         else
         {
             Health -= damage;
-            if (Health > CharacterStats.StartingHealth) Health = CharacterStats.StartingHealth;
+            Health = Mathf.Min(Health, CharacterStats.StartingHealth);
         }
         //update healthbar
         HealthBar.fillAmount = (float)Health / CharacterStats.StartingHealth;
@@ -141,113 +214,136 @@ public class Character : MonoBehaviour, ICharacter
         CharacterManager._instance.RemoveFromArmyList(this);
         if (IsPirate)
         {
-            CoinManager._instance.Coins[0] += Mathf.FloorToInt(Cost / 2);
+            CoinManager._instance.Coins[0] += Mathf.FloorToInt(Cost / 2.0f);
         }
         else
         {
-            CoinManager._instance.Coins[1] += Mathf.FloorToInt(Cost / 2);
+            CoinManager._instance.Coins[1] += Mathf.FloorToInt(Cost / 2.0f);
         }
+        //make sure it is character before destroying
         if (this.GetType() == typeof(Character)) Destroy(this.gameObject);
-    }
-
-    public Character GetCharacter()
-    {
-        return this;
     }
 
     public void Attack()
     {
-        //first finds an enemy to attack (if there is one)
-        GameObject enemy = Attack_FindEnemy();        
-        //if an enemy is found, the character moves to the enemy then attacks it
-        if (enemy.tag == "Player")
-        {
-            StartCoroutine(MoveToTarget(enemy));
-        } 
-        //try again to find an enemy if an appropriate enemy isn't found
-        else
-        {
-            Invoke("Attack", DelayBetweenAttack);
-        }        
+        //The Attack is split into multiple methods within the finite state machine, so this method is a direct way of starting the Attack
+        //sequence rather than allowing for the finite state machine to continue making choices
+        StopAllCoroutines();
+        State = AIState.LookForEnemy;
+        DoCurrentStateAction();     
     }
 
-    //returns an enemy from either the pirate team or castle team
-    private GameObject Attack_FindEnemy()
+    //gets an enemy from either the pirate team or castle team and sets this character's target to that enemy
+    private IEnumerator FindEnemy()
     {
-        GameObject enemy;
+        if (CharAnimator != null) CharAnimator.SetInteger("AnimationState", 0);
+        //first set/get an enemy to attack
         if (IsPirate)
         {
-            enemy = CharacterManager._instance.GetRandomEnemy(false);
+            //pirates attack the closest enemy to them
+            Enemy = CharacterManager._instance.GetClosestEnemy(false, this.transform.position);
         }
         else
         {
-            enemy = CharacterManager._instance.GetRandomEnemy(true);
+            //knights attack the closest enemy to the king
+            Enemy = CharacterManager._instance.GetClosestEnemy(true, CharacterManager._instance.GetCastleKingPos());
         }
-        return enemy;
+        //if target/enemy acquired successfully (tag is player), transition the finite state machine to go to enemy
+        if (Enemy.tag == "Player")
+        {
+            State = AIState.GoToEnemy;
+            DoCurrentStateAction();
+        }
+        //else (no enemy found) use finite state machine to repeat this state's action of finding an enemy
+        else
+        {
+            State = AIState.LookForEnemy;
+            yield return new WaitForSeconds(DelayBetweenAttack);
+            DoCurrentStateAction();
+        }
     }
 
     //because a lot of agents are in the game at once and because they can die mid-activity, there are a lot of checks
     //to see if they are alive to not break anything. I'm unsure of a better solution than to constantly check so until I find one
     //(if i can), i simply implemented many checks
-    private IEnumerator MoveToTarget(GameObject enemy)
+    private IEnumerator MoveToEnemy()
     {
         if (Agent != null && Agent.isActiveAndEnabled)
         {
             //make sure the agent can move (is stopped = false)
             Agent.isStopped = false;
         }
-        while (enemy != null && Vector2.Distance(transform.position, enemy.transform.position) > Range)
+        while (Enemy != null && Vector2.Distance(transform.position, Enemy.transform.position) > Range)
         {
             //Every now and then this error shows up:
             //"Set Destination" can only be called on an active agent that has been placed on a navmesh
             //Which is why I added many checks to make sure this doesnt happen
-            if (Agent != null && Agent.isActiveAndEnabled && 
-                enemy != null && Agent.SetDestination(enemy.transform.position)) yield return null;
-            //transform.position = Vector2.MoveTowards(transform.position, enemy.transform.position, SpeedMod * Time.deltaTime);
+
+            //continue to go to the enemy while the enemy remains valid andout of range
+            if (Agent != null && Agent.isActiveAndEnabled && Enemy != null && Agent.SetDestination(Enemy.transform.position))
+            {
+                if (CharAnimator != null) CharAnimator.SetInteger("AnimationState", 1);
+                yield return null;
+            }
+            //if enemy is no longer valid, look for a new enemy
             else
             {
-                Invoke("Attack", DelayBetweenAttack);                
+                State = AIState.LookForEnemy;
+                if (CharAnimator != null) CharAnimator.SetInteger("AnimationState", 0);
+                //short delay before looking for new target
+                yield return new WaitForSeconds(DelayBetweenAttack);
+                DoCurrentStateAction();
                 yield break;
             }
         }
-        //make sure the agent cant move once in desired range of enemy
+        //make sure the agent cant move once in desired range of enemy and then attack
         if (Agent != null && Agent.isActiveAndEnabled)
         {
             Agent.velocity = Vector3.zero;
             Agent.isStopped = true;
-            StartCoroutine(Attack_DealDamageToEnemy(enemy));
+            State = AIState.AttackEnemy;
+            DoCurrentStateAction();
         }
     }
 
-    private IEnumerator Attack_DealDamageToEnemy(GameObject enemy)
+    //damages enemy while they are alive and in range, moves to enemy if they go out of range, and looks for new target when current target dies/becomes invalid
+    private IEnumerator AttackEnemy()
     {
         Character enemyCharComp = null;
-        if (enemy != null)
+        if (Enemy != null)
         {
-            enemyCharComp = enemy.GetComponent<Character>();
+            enemyCharComp = Enemy.GetComponent<Character>();
         }        
         if (enemyCharComp != null)
         {
-            //first hit the enemy (because the enemy is in the character's attack range due to the MoveToTarget coroutine)
-            enemyCharComp.TakeDamage(Damage);
+            //first hit the enemy (because the enemy is in the character's attack range due to the MoveToEnemy coroutine)
+            //castle king has a special take damage method
+            if (CharAnimator != null) CharAnimator.SetInteger("AnimationState", 2);
+            if (enemyCharComp.IsKing && !enemyCharComp.IsPirate) CharacterManager._instance.CKD.TakeDamage(Damage);
+            else enemyCharComp.TakeDamage(Damage);
             yield return new WaitForSeconds(TimeBetweenAttacks);
             //continously hit the enemy while they remain in range every x seconds and aren't dead
-            while (enemy != null && Vector2.Distance(transform.position, enemy.transform.position) <= Range)
+            while (Enemy != null && Vector2.Distance(transform.position, Enemy.transform.position) <= Range)
             {
                 if (enemyCharComp != null)
                 {
-                    enemyCharComp.TakeDamage(Damage);
+                    if (enemyCharComp.IsKing && !enemyCharComp.IsPirate) CharacterManager._instance.CKD.TakeDamage(Damage);
+                    else enemyCharComp.TakeDamage(Damage);
                 }
                 yield return new WaitForSeconds(TimeBetweenAttacks);
             }
         }        
-        //if the enemy isn't dead/not found but out of range, go to it again
-        if (enemyCharComp != null && Vector2.Distance(transform.position, enemy.transform.position) > Range)
+        //if the enemy isn't dead/invalid but out of range, go to it again
+        if (enemyCharComp != null && Vector2.Distance(transform.position, Enemy.transform.position) > Range)
         {
-            StartCoroutine(MoveToTarget(enemy));
+            if (CharAnimator != null) CharAnimator.SetInteger("AnimationState", 0);
+            State = AIState.GoToEnemy;
+            DoCurrentStateAction();
             yield break;
         }
-        //in the case the enemy dies, stop trying to attack it and search for a new enemy to attack
-        Attack();
+        //in the case the enemy dies/is no longer valid, stop trying to attack it and search for a new enemy to attack
+        if (CharAnimator != null) CharAnimator.SetInteger("AnimationState", 0);
+        State = AIState.LookForEnemy;
+        DoCurrentStateAction();
     }
 }

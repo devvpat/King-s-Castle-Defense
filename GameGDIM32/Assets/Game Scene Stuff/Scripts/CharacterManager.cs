@@ -47,14 +47,13 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
-
     public void Setup()
     {
         CastleArmyComp = CastleArmy.GetComponent<Army>();
         DestroyAllChildren(CastleArmy);
         PirateArmyComp = PirateArmy.GetComponent<Army>();
         DestroyAllChildren(PirateArmy);
-        //always spawn caslte king, spawn additional guards if in singleplayer
+        //always spawn castle king, spawn additional guards if in singleplayer
         SpawnCharacter("CKing", 1);
         if (GameplayManager._instance.SoloMode) SoloInitialSpawn();
     }
@@ -75,6 +74,7 @@ public class CharacterManager : MonoBehaviour
         Spawn(1);
     }
 
+    //method for spawning the pirate king, called from another class during multiplayer
     public void MP_SpawnPirateKing()
     {
         SpawnCharacter("PKing", 2);
@@ -83,8 +83,7 @@ public class CharacterManager : MonoBehaviour
     //takes the characterName and references the CharacterName list to find the corresponding index in the CharacterPrefab list
     //used to check if the player is able to spawn the character (if they try to buy one using coins), sends spawn data to Spawn() if spawning is allowed
     public void SpawnCharacter(string characterName, int player)
-    {
-        
+    {        
         int index = CharacterName.IndexOf(characterName);
         if (index != -1)
         {
@@ -122,6 +121,14 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
+    //spawns a character regardless of their cost and player's current coins,
+    //made public so it can be accessed by the king character decorator
+    public void ForceSpawn(string name)
+    {
+        int index = CharacterName.IndexOf(name);
+        if (index != -1) Spawn(index);
+    }
+
     //Uses index (in terms of CharacterPrefab list) to spawn the appropriate character
     private void Spawn(int index)
     {
@@ -130,7 +137,7 @@ public class CharacterManager : MonoBehaviour
         //for spawning a castle character, 5 represents king character/final castle character as seen in unity editor inspector list
         if (index < 6)
         {
-            Vector3 spawnPos = new Vector3(CastleArmy.transform.position.x, randomY, CastleArmy.transform.position.z);
+            Vector3 spawnPos = new Vector3(CastleArmy.transform.position.x, randomY, 0);
             GameObject newCharacter = Instantiate(CharacterPrefab[index], CastleArmy.transform);
             newCharacter.transform.position = spawnPos;
             Character characterCharComp = newCharacter.GetComponent<Character>();
@@ -150,7 +157,7 @@ public class CharacterManager : MonoBehaviour
         //for spawning a pirate character, 11 represents king character/final pirate character as seen in unity editor inspector list
         else
         {
-            Vector3 spawnPos = new Vector3(PirateArmy.transform.position.x, randomY, PirateArmy.transform.position.z);
+            Vector3 spawnPos = new Vector3(PirateArmy.transform.position.x, randomY, 0);
             GameObject newCharacter = Instantiate(CharacterPrefab[index], PirateArmy.transform);
             newCharacter.transform.position = spawnPos;
             Character characterCharComp = newCharacter.GetComponent<Character>();
@@ -170,18 +177,23 @@ public class CharacterManager : MonoBehaviour
     }
 
     //returns a random pirate or castle character
-    public GameObject GetRandomEnemy(bool getPirate)
+    public GameObject GetClosestEnemy(bool getPirate, Vector2 pos)
     {
-        //returns random pirate
+        //returns the pirate that is closest to pos
         if (getPirate)
         {
-            return PirateArmyComp.GetRandomUnit();
+            return PirateArmyComp.GetClosetUnit(pos);
         }
-        //returns random castle
+        //returns the knight that is closest to pos
         else
         {
-            return CastleArmyComp.GetRandomUnit();
+            return CastleArmyComp.GetClosetUnit(pos);
         }
+    }
+
+    public Vector2 GetCastleKingPos()
+    {
+        return CKD.GetCharacter().gameObject.transform.position;
     }
 
     //removes a specific character from its respective armylist
