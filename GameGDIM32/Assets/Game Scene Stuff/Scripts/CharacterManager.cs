@@ -104,6 +104,12 @@ public class CharacterManager : MonoBehaviour
                         CanvasManager._instance.UpdateDisplayedData();
                         Spawn(index);
                     }
+                    //if there is not enough coins to spawn, display a notification
+                    else
+                    {
+                        NotificationManager.Instance.SetNewNotification("you don't have enough coins!");
+                        //when player dont have enough coins to buy + the player is buying, then show this //Tien-Yi
+                    }
                 }
                 else if (CoinManager._instance.Coins[player - 1] >= characterCharComp.CharacterStats.Cost)
                 {

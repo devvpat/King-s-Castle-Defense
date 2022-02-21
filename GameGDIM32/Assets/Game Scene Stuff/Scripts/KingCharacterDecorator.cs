@@ -20,7 +20,7 @@ public class KingCharacterDecorator : BaseCharacterDecorator
 
     //bounds for random location chosen in flee method
     private float[] Flee_X = { 15, 20 };
-    private float[] Flee_Y = { -5.9f, 6.9f };
+    private float[] Flee_Y = { -6.9f, 6.9f };
 
     public KingCharacterDecorator(ICharacter character) : base(character)
     {

@@ -9651,7 +9651,7 @@ MonoBehaviour:
   CastleArmy: {fileID: 1184094181}
   PirateArmy: {fileID: 951451442}
   MaxSpawnY: 6.9
-  MinSpawnY: -5.9
+  MinSpawnY: -6.9
   CastleKingSpawn: {x: 20, y: 1, z: -5}
   PirateKingSpawn: {x: -20, y: 1, z: -5}
   MP_PirateKingSpawnTime: 60

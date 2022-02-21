@@ -5088,6 +5088,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 638134692}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1314527520}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &269772014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5186,10 +5210,10 @@ MonoBehaviour:
   m_text: 'Players generate coins passively and by killing enemies.
 
     Use coins
-    by clicking the button or pressing its associate key.
+    by clicking a button or pressing the button''s associated key.
 
     each knight/pirate
-    has a different cost'
+    has a different cost.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392, type: 2}
   m_sharedMaterial: {fileID: 5909679905206874520, guid: d2f8841bb0f6cff4086c0fd1af2be392,
@@ -5218,8 +5242,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.61
-  m_fontSizeBase: 22.61
+  m_fontSize: 22.3
+  m_fontSizeBase: 22.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6456,15 +6480,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'player 1 must defend the king by summoning knights
+  m_text: 'In singleplayer, an AI will summon the pirates.
 
-    player 2 will
-    spawn pirates to kill the king
+    In multiplayer, Player
+    1 summons knights and Player 2 summons pirates.
 
-    The King and the Boss who survives win the
-    final battle.
+    After 60 seconds, the pirate
+    king will spawn.
 
-    (The Boss will be auto-summoned after 60 seconds)
+    whichever king survives wins the game!
 
 '
   m_isRightToLeft: 0
@@ -6495,8 +6519,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.61
-  m_fontSizeBase: 22.61
+  m_fontSize: 22.4
+  m_fontSizeBase: 22.4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -13592,7 +13616,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Players must defend the king from the pirates!
+  m_text: 'Player 1 must defend the king from pirates by summoning knights!
+
+    Player
+    2 can summon pirates to attack the king!
 
 '
   m_isRightToLeft: 0
@@ -19727,6 +19754,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 190941234}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1314527520}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1124996576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20922,7 +20973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71f43c4c7ae9e246b3e477bd9fb6a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: 1920
+  length: 1250
 --- !u!114 &1173213196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29050,6 +29101,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 485162232}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1314527520}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1495306230
 MonoBehaviour:
