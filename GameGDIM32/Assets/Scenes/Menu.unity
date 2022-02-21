@@ -8209,6 +8209,7 @@ GameObject:
   - component: {fileID: 494469536}
   - component: {fileID: 494469535}
   - component: {fileID: 494469534}
+  - component: {fileID: 494469537}
   m_Layer: 5
   m_Name: 'QuitButton '
   m_TagString: Untagged
@@ -8280,9 +8281,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1720862380}
-        m_TargetAssemblyTypeName: GameStateManager, Assembly-CSharp
-        m_MethodName: QuitGame
+      - m_Target: {fileID: 494469537}
+        m_TargetAssemblyTypeName: QuitApplication, Assembly-CSharp
+        m_MethodName: QuitApp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8330,6 +8331,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494469532}
   m_CullTransparentMesh: 1
+--- !u!114 &494469537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494469532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c15c416b5e7784681f397a93344015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &502217139
 GameObject:
   m_ObjectHideFlags: 0
@@ -20973,7 +20986,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71f43c4c7ae9e246b3e477bd9fb6a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: 1250
 --- !u!114 &1173213196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34084,18 +34096,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1720862380 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3530278885839197398, guid: 9d657b80f4ac6324eb12f9537dfdd06a,
-    type: 3}
-  m_PrefabInstance: {fileID: 3530278885261546106}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 847237f12e67a1442856e24b5e918b9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1726752571
 GameObject:
   m_ObjectHideFlags: 0

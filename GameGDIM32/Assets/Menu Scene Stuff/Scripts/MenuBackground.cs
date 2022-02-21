@@ -8,14 +8,14 @@ public class MenuBackground : MonoBehaviour
     float scrollSpeed = -80f;
     Vector2 startPos;
 
-    [SerializeField]
-    public int length;
+    private int length;
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1; //so the script will run after the first game
         startPos = transform.position;
+        length = Screen.currentResolution.width;
     }
 
     // Update is called once per frame
