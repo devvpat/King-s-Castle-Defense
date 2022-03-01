@@ -131,7 +131,8 @@ public class GameplayManager : MonoBehaviour
         {
             int score = ScoreManager._instance.Scores[0];
             int highScore = PlayerPrefs.GetInt("SoloHighScore");
-            PlayerPrefs.SetInt("SoloHighScore", Mathf.Max(score, highScore));
+            //faster win (lower score) is "better"
+            PlayerPrefs.SetInt("SoloHighScore", Mathf.Min(score, highScore));
             PlayerPrefs.SetInt("SoloWins", PlayerPrefs.GetInt("SoloWins") + 1);
         }
     }

@@ -22,6 +22,7 @@ public class Character : MonoBehaviour, ICharacter
 
     private float TimeBetweenAttacks = 0.5f;
     private float TimeToPrepare = 1;
+    private float TimeBetweenRecheckTarget = 2.5f;
 
     [SerializeField]
     private Image HealthBar;
@@ -273,8 +274,18 @@ public class Character : MonoBehaviour, ICharacter
             //make sure the agent can move (is stopped = false)
             Agent.isStopped = false;
         }
+        float count = 0;
         while (Enemy != null && Vector2.Distance(transform.position, Enemy.transform.position) > Range)
         {
+            //to keep AI more consistent, every now and then (TimeBetweenRecheckTarget) get a better target
+            //if possible (by going back to find enemy state)
+            if (count >= TimeBetweenRecheckTarget)
+            {
+                State = AIState.LookForEnemy;
+                DoCurrentStateAction();
+                yield break;
+            }
+
             //Every now and then this error shows up:
             //"Set Destination" can only be called on an active agent that has been placed on a navmesh
             //Which is why I added many checks to make sure this doesnt happen
@@ -284,6 +295,7 @@ public class Character : MonoBehaviour, ICharacter
             {
                 if (CharAnimator != null) CharAnimator.SetInteger("AnimationState", 1);
                 yield return null;
+                count += Time.deltaTime;
             }
             //if enemy is no longer valid, look for a new enemy
             else

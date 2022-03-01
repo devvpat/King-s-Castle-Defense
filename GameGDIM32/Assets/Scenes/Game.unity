@@ -452,8 +452,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 2164260863
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    rgba: 3238002687
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.7529412}
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
@@ -1085,7 +1085,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '||| "A" OR CLICK |||
+  m_text: 'A or click
+
+    --------------------
 
     Buy Level 4 knight (25)'
   m_isRightToLeft: 0
@@ -1116,8 +1118,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8659,7 +8661,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '||| "S" OR CLICK |||
+  m_text: 'S or click
+
+    --------------------
 
     Buy Level 5 knight (40)'
   m_isRightToLeft: 0
@@ -8690,8 +8694,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8903,7 +8907,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '||| "Q" OR CLICK |||
+  m_text: 'Q or click
+
+    --------------------
 
     Buy Level 1 knight (5)'
   m_isRightToLeft: 0
@@ -8934,8 +8940,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9130,6 +9136,10 @@ PrefabInstance:
       value: you dont have enough money!
       objectReference: {fileID: 0}
     - target: {fileID: 6019970422574712, guid: 7c53204ffd4a21a41bdddc6e794bc956, type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019970422574712, guid: 7c53204ffd4a21a41bdddc6e794bc956, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: d2f8841bb0f6cff4086c0fd1af2be392,
@@ -9137,6 +9147,10 @@ PrefabInstance:
     - target: {fileID: 6019970422574712, guid: 7c53204ffd4a21a41bdddc6e794bc956, type: 3}
       propertyPath: m_fontColor.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019970422574712, guid: 7c53204ffd4a21a41bdddc6e794bc956, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6019970422574712, guid: 7c53204ffd4a21a41bdddc6e794bc956, type: 3}
       propertyPath: m_sharedMaterial
@@ -9153,7 +9167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6019970422574715, guid: 7c53204ffd4a21a41bdddc6e794bc956, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -197
+      value: -165
       objectReference: {fileID: 0}
     - target: {fileID: 6019970651708633, guid: 7c53204ffd4a21a41bdddc6e794bc956, type: 3}
       propertyPath: m_Name
@@ -9246,6 +9260,14 @@ PrefabInstance:
     - target: {fileID: 6019971305276098, guid: 7c53204ffd4a21a41bdddc6e794bc956, type: 3}
       propertyPath: fadeTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019971305276098, guid: 7c53204ffd4a21a41bdddc6e794bc956, type: 3}
+      propertyPath: MultiplayerY
+      value: -195
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019971305276098, guid: 7c53204ffd4a21a41bdddc6e794bc956, type: 3}
+      propertyPath: SingleplayerY
+      value: -165
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c53204ffd4a21a41bdddc6e794bc956, type: 3}
@@ -9550,16 +9572,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d614eb1b699fb1942baf3bbdc44c607a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SE_TD_Vals: fbffffff05000000
-  SE_RE_Vals: fbffffff05000000
-  SE_AD_Vals: fbffffff05000000
+  SE_TD_Vals: fbffffff0a000000
+  SE_RE_Vals: fdffffff08000000
+  SE_AD_Vals: fdffffff08000000
   SE_RA_Vals:
-  - -0.5
-  - 1
+  - -0.25
+  - 0.5
   SE_SM_Vals:
-  - -2
-  - 2
-  Interval: 13
+  - -1.25
+  - 2.25
+  Interval: 18
   SpecialEffect_Canvas: {fileID: 1070809047}
   Text: {fileID: 148395144}
   DisplayTime: 4
@@ -9801,7 +9823,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '||| "W" OR CLICK |||
+  m_text: 'W or click
+
+    --------------------
 
     Buy Level 2 knight (10)'
   m_isRightToLeft: 0
@@ -9832,8 +9856,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -10129,7 +10153,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '||| "W" OR CLICK |||
+  m_text: 'w or click
+
+    --------------------
 
     Buy Level 2 knight (10)'
   m_isRightToLeft: 0
@@ -10160,8 +10186,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 11
+  m_fontSizeBase: 11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -10267,7 +10293,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '||| "S" OR CLICK |||
+  m_text: 'S or click
+
+    --------------------
 
     Buy Level 5 knight (40)'
   m_isRightToLeft: 0
@@ -10298,8 +10326,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 11
+  m_fontSizeBase: 11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -18580,7 +18608,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '||| "N" OR CLICK |||
+  m_text: 'n or click
+
+    --------------------
 
     Buy Level 4 Pirate (25)'
   m_isRightToLeft: 0
@@ -18611,8 +18641,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 11
+  m_fontSizeBase: 11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -18718,7 +18748,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '||| "J" OR CLICK |||
+  m_text: 'J or click
+
+    --------------------
 
     Buy Level 1 Pirate (5)'
   m_isRightToLeft: 0
@@ -18749,8 +18781,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 11
+  m_fontSizeBase: 11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -19183,7 +19215,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '||| "E" OR CLICK |||
+  m_text: 'E or click
+
+    --------------------
 
     Buy Level 3 knight (15)'
   m_isRightToLeft: 0
@@ -19214,8 +19248,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 11
+  m_fontSizeBase: 11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -19321,7 +19355,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '||| "E" OR CLICK |||
+  m_text: 'E or click
+
+    --------------------
 
     Buy Level 3 knight (15)'
   m_isRightToLeft: 0
@@ -19352,8 +19388,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -20340,7 +20376,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '||| "Q" OR CLICK |||
+  m_text: 'Q or click
+
+    --------------------
 
     Buy Level 1 knight (5)'
   m_isRightToLeft: 0
@@ -20371,8 +20409,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 11
+  m_fontSizeBase: 11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -20614,7 +20652,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '||| "L" OR CLICK |||
+  m_text: 'L or click
+
+    --------------------
 
     Buy Level 3 Pirate (15)'
   m_isRightToLeft: 0
@@ -20645,8 +20685,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 11
+  m_fontSizeBase: 11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -21443,7 +21483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14efab67bec66f64abfeacdb4d2c81c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SP_TimeBetweenGeneration: 1
+  SP_TimeBetweenGeneration: 0.7
   MP_TimeBetweenGeneration: 0.8
 --- !u!4 &1799361492
 Transform:
@@ -21979,7 +22019,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '||| "A" OR CLICK |||
+  m_text: 'A or click
+
+    --------------------
 
     Buy Level 4 knight (25)'
   m_isRightToLeft: 0
@@ -22010,8 +22052,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 11
+  m_fontSizeBase: 11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -22328,7 +22370,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '||| "K" OR CLICK |||
+  m_text: 'K or click
+
+    --------------------
 
     Buy Level 2 Pirate (10)'
   m_isRightToLeft: 0
@@ -22359,8 +22403,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 11
+  m_fontSizeBase: 11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -22630,7 +22674,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '||| "M" OR CLICK |||
+  m_text: 'm or click
+
+    --------------------
 
     Buy Level 5 Pirate (40)'
   m_isRightToLeft: 0
@@ -22661,8 +22707,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 11
+  m_fontSizeBase: 11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

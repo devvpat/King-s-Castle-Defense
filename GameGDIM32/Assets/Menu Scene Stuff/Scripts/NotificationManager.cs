@@ -12,6 +12,13 @@ public class NotificationManager : MonoBehaviour
 
     [SerializeField] private float fadeTime;
 
+    //Dev Patel
+    [SerializeField]
+    private float MultiplayerY;
+    [SerializeField]
+    private float SingleplayerY;
+
+
     private IEnumerator notificationCoroutine;
 
     private static NotificationManager instance;
@@ -54,12 +61,23 @@ public class NotificationManager : MonoBehaviour
         }
     }
 
+    //Method by Dev Patel
+    private void SetTextYPos()
+    {
+        float yPos = MultiplayerY;
+        if (GameplayManager._instance.SoloMode) yPos = SingleplayerY;
+        RectTransform rt = notificationText.GetComponent<RectTransform>();
+        Vector3 pos = new Vector3(rt.localPosition.x, yPos, rt.localPosition.z);
+        notificationText.rectTransform.localPosition = pos;
+    }
+
     public void SetNewNotification(string message) //pass in the string, so we can use it on the other script
     {
         if(notificationCoroutine != null)         //if notification is currently fading out, 
         {                                         // and stop it
             StopCoroutine(notificationCoroutine); 
         }
+        SetTextYPos();
         notificationCoroutine = FadeOutNotification(message); //then make the notification we passed in to fade out 
         StartCoroutine(notificationCoroutine);                //and start it
     }
