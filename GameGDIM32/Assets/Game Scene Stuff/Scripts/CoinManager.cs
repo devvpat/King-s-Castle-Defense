@@ -14,8 +14,10 @@ public class CoinManager : MonoBehaviour
     private float SP_TimeBetweenGeneration;
     [SerializeField]
     private float MP_TimeBetweenGeneration;
+    [SerializeField]
+    private float AI_TimeBetweenGeneration;
 
-    private void Awake()
+    private void Awake()    
     {
         if (_instance != null && _instance != this)
         {
@@ -34,30 +36,27 @@ public class CoinManager : MonoBehaviour
 
     public void BeginGeneration()
     {
-        bool solo = GameplayManager._instance.SoloMode;
-        StartCoroutine(GenerateCoins(solo));
+        //player 1 (index 0) generates coin at SP_TimeBetweenGeneration rate, player 2/AI (index 1) generates coin at AI_TimeBetweenGeneration rate
+        if (GameplayManager._instance.SoloMode)
+        {
+            StartCoroutine(GenerateCoins(SP_TimeBetweenGeneration, 0));
+            StartCoroutine(GenerateCoins(AI_TimeBetweenGeneration, 1));
+        }
+        //both players (humans/local multiplayer) generate coins at MP_TimeBetweenGeneration rate
+        else
+        {
+            StartCoroutine(GenerateCoins(MP_TimeBetweenGeneration, 0));
+            StartCoroutine(GenerateCoins(MP_TimeBetweenGeneration, 1));
+        }
     }
 
     //in solo mode, coins are only generate for player 1 (0 index of the array)
     //in multiplayer, coins are generated for both players
-    private IEnumerator GenerateCoins(bool solo)
+    private IEnumerator GenerateCoins(float time, int player)
     {
-        if (solo)
-        {
-            Coins[0] += 1;
-            CanvasManager._instance.UpdateDisplayedData();
-            yield return new WaitForSeconds(SP_TimeBetweenGeneration);
-            StartCoroutine(GenerateCoins(solo));
-        }
-        else
-        {
-            for (int i = 0; i < Coins.Length; i++)
-            {
-                Coins[i] += 1;
-            }
-            CanvasManager._instance.UpdateDisplayedData();
-            yield return new WaitForSeconds(MP_TimeBetweenGeneration);
-            StartCoroutine(GenerateCoins(solo));
-        }
+        Coins[player] += 1;
+        CanvasManager._instance.UpdateDisplayedData();
+        yield return new WaitForSeconds(MP_TimeBetweenGeneration);
+        StartCoroutine(GenerateCoins(time, player));
     }
 }

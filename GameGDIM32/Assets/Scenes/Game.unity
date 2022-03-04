@@ -10953,6 +10953,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ca3b48e2faa194b86de1922d177abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerPrefab: {fileID: 4033459619480590280, guid: 47b9b77dbb5acf14b9c1c6d5fbe26d7b,
+    type: 3}
 --- !u!4 &1225759705
 Transform:
   m_ObjectHideFlags: 0
@@ -21485,6 +21487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP_TimeBetweenGeneration: 0.7
   MP_TimeBetweenGeneration: 0.8
+  AI_TimeBetweenGeneration: 0.6
 --- !u!4 &1799361492
 Transform:
   m_ObjectHideFlags: 0

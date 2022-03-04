@@ -2,8 +2,10 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class CharacterManager : MonoBehaviour
+public class CharacterManager : MonoBehaviourPunCallbacks
 {
     public static CharacterManager _instance;
 
@@ -90,28 +92,28 @@ public class CharacterManager : MonoBehaviour
             Character characterCharComp = CharacterPrefab[index].GetComponent<Character>();
             if (characterCharComp != null)
             {
-                //if in singleplayer and the player has enough coins, spawn character (always spawn pirate).
-                //if in multiplayer, check the specific player's coin bank and spawn if they have enough
-                if (GameplayManager._instance.SoloMode)
-                {
-                    if (characterCharComp.GetIsPirate())
-                    {
-                        Spawn(index);
-                    }
-                    else if (CoinManager._instance.Coins[0] >= characterCharComp.CharacterStats.Cost)
-                    {
-                        CoinManager._instance.Coins[0] -= characterCharComp.CharacterStats.Cost;
-                        CanvasManager._instance.UpdateDisplayedData();
-                        Spawn(index);
-                    }
-                    //if there is not enough coins to spawn, display a notification
-                    else
-                    {
-                        NotificationManager.Instance.SetNewNotification("you don't have enough coins!");
-                        //when player dont have enough coins to buy + the player is buying, then show this //Tien-Yi
-                    }
-                }
-                else if (CoinManager._instance.Coins[player - 1] >= characterCharComp.CharacterStats.Cost)
+                ////if in singleplayer and the player has enough coins, spawn character (always spawn pirate).
+                ////if in multiplayer, check the specific player's coin bank and spawn if they have enough
+                //if (GameplayManager._instance.SoloMode)
+                //{
+                //    if (characterCharComp.GetIsPirate())
+                //    {
+                //        Spawn(index);
+                //    }
+                //    else if (CoinManager._instance.Coins[0] >= characterCharComp.CharacterStats.Cost)
+                //    {
+                //        CoinManager._instance.Coins[0] -= characterCharComp.CharacterStats.Cost;
+                //        CanvasManager._instance.UpdateDisplayedData();
+                //        Spawn(index);
+                //    }
+                //    //if there is not enough coins to spawn, display a notification
+                //    else
+                //    {
+                //        NotificationManager.Instance.SetNewNotification("you don't have enough coins!");
+                //        //when player dont have enough coins to buy + the player is buying, then show this //Tien-Yi
+                //    }
+                //}
+                if (CoinManager._instance.Coins[player - 1] >= characterCharComp.CharacterStats.Cost)
                 {
                     CoinManager._instance.Coins[player - 1] -= characterCharComp.CharacterStats.Cost;
                     CanvasManager._instance.UpdateDisplayedData();
@@ -144,7 +146,14 @@ public class CharacterManager : MonoBehaviour
         if (index < 6)
         {
             Vector3 spawnPos = new Vector3(CastleArmy.transform.position.x, randomY, 0);
-            GameObject newCharacter = Instantiate(CharacterPrefab[index], CastleArmy.transform);
+            GameObject newCharacter;
+            if (!GameplayManager._instance.OnlineMode) newCharacter = Instantiate(CharacterPrefab[index], CastleArmy.transform);
+            //use photon instantiation for online
+            else
+            {
+                newCharacter = PhotonNetwork.Instantiate(CharacterPrefab[index].name, CastleArmy.transform.position, Quaternion.identity, 0);
+                newCharacter.transform.SetParent(CastleArmy.transform, true);
+            }
             newCharacter.transform.position = spawnPos;
             Character characterCharComp = newCharacter.GetComponent<Character>();
             //if the spawned character is a castle king, use the king decorator and store that reference for future use

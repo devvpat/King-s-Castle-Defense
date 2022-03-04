@@ -1,5 +1,6 @@
 //Class written by: Dev Patel
 
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameplayManager : MonoBehaviour
@@ -7,11 +8,17 @@ public class GameplayManager : MonoBehaviour
     public static GameplayManager _instance;
 
     public bool SoloMode { get; private set; }
+    public bool OnlineMode { get; private set; }
 
     //Delegates for notifying when either the pirates win or the castle wins
     public delegate void OnWin();
     public OnWin OnCastleWin;
     public OnWin OnPirateWin;
+
+    [SerializeField]
+    private GameObject PlayerPrefab;
+
+    private List<GameObject> PlayerList = new List<GameObject>();
 
     private void Awake()
     {
@@ -42,10 +49,25 @@ public class GameplayManager : MonoBehaviour
         SpawnHandler.EnableSpawn(); //Tien-Yi added this, for turning on the spawn buttons when game starts
     }
 
+    //creates player characters (which are used for input)
     private void SelfSetup()
     {
-        if (PlayerPrefs.GetInt("SoloMode") > 0) SoloMode = true;
-        else SoloMode = false;
+        PlayerList.Add(Instantiate(PlayerPrefab));
+        PlayerList[0].GetComponent<PlayerChar>().SetPlayerNum(1);
+        PlayerList[0].name = "Player 1";
+        if (PlayerPrefs.GetInt("SoloMode") == 1)
+        {
+            SoloMode = true;           
+        }
+        else
+        {
+            SoloMode = false;
+            PlayerList.Add(Instantiate(PlayerPrefab));
+            PlayerList[1].GetComponent<PlayerChar>().SetPlayerNum(2);
+            PlayerList[1].name = "Player 2";
+            if (PlayerPrefs.GetInt("Online") == 1) OnlineMode = true;
+            else OnlineMode = false;
+        }
     }
 
     private void SetupOthersManagers()
@@ -58,8 +80,8 @@ public class GameplayManager : MonoBehaviour
         SpecialEffectManager._instance.Setup();
         if (SoloMode)
         {
-            //On solomode, setup singleplayer pirate spawner
-            SP_PirateSpawner._instance.Setup();
+            //On solomode, setup singleplayer ai
+            //SP_PirateSpawner._instance.Setup();
         }
         OnCastleWin += SpawnHandler.DisableSpawn;
         OnPirateWin += SpawnHandler.DisableSpawn;
@@ -72,49 +94,6 @@ public class GameplayManager : MonoBehaviour
         if (Input.GetButtonDown("PauseToggle"))
         {
             GameStateManager.instance.TogglePause();   
-        }
-        if (GameStateManager.state == GameStateManager.GameState.Playing)
-        {
-            if (Input.GetButtonDown("SpawnCastle1"))
-            {
-                CharacterManager._instance.SpawnCharacter("C1", 1);
-            }
-            if (Input.GetButtonDown("SpawnCastle2"))
-            {
-                CharacterManager._instance.SpawnCharacter("C2", 1);
-            }
-            if (Input.GetButtonDown("SpawnCastle3"))
-            {
-                CharacterManager._instance.SpawnCharacter("C3", 1);
-            }
-            if (Input.GetButtonDown("SpawnCastle4"))
-            {
-                CharacterManager._instance.SpawnCharacter("C4", 1);
-            }
-            if (Input.GetButtonDown("SpawnCastle5"))
-            {
-                CharacterManager._instance.SpawnCharacter("C5", 1);
-            }
-            if (Input.GetButtonDown("SpawnPirate1") && !SoloMode)
-            {
-                CharacterManager._instance.SpawnCharacter("P1", 2);
-            }
-            if (Input.GetButtonDown("SpawnPirate2") && !SoloMode)
-            {
-                CharacterManager._instance.SpawnCharacter("P2", 2);
-            }
-            if (Input.GetButtonDown("SpawnPirate3") && !SoloMode)
-            {
-                CharacterManager._instance.SpawnCharacter("P3", 2);
-            }
-            if (Input.GetButtonDown("SpawnPirate4") && !SoloMode)
-            {
-                CharacterManager._instance.SpawnCharacter("P4", 2);
-            }
-            if (Input.GetButtonDown("SpawnPirate5") && !SoloMode)
-            {
-                CharacterManager._instance.SpawnCharacter("P5", 2);
-            }
         }
     }
 

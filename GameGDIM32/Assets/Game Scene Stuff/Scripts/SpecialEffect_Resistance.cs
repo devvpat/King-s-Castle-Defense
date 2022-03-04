@@ -13,6 +13,6 @@ public class SpecialEffect_Resistance : ISpecialEffect
     public void Effect(ICharacter character)
     {
         int resChange = Random.Range(minResitanceChange, maxResistanceChange + 1);
-        (character as Character).Resistance += resChange;
+        (character as Character).ChangeResistance(resChange);
     }
 }

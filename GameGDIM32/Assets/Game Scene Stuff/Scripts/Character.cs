@@ -4,9 +4,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using Photon.Pun;
+using Photon.Realtime;
 
 //Leaf part of the ICharacter composite pattern
-public class Character : MonoBehaviour, ICharacter
+public class Character : MonoBehaviourPunCallbacks, ICharacter, IPunObservable
 {
     public int Health { get; set; }
     public int Damage { get; set; }
@@ -111,6 +113,11 @@ public class Character : MonoBehaviour, ICharacter
         Range = Mathf.Max(Range, MinRange);
     }
 
+    public void ChangeResistance(int res)
+    {
+        Resistance += res;
+    }
+
     private void ResetStats()
     {
         Health = CharacterStats.StartingHealth;
@@ -138,6 +145,32 @@ public class Character : MonoBehaviour, ICharacter
     public Character GetCharacter()
     {
         return this;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(Health);
+            stream.SendNext(Damage);
+            stream.SendNext(Resistance);
+            stream.SendNext(Range);
+            stream.SendNext(IsPirate);
+            stream.SendNext(Cost);
+            stream.SendNext(SpeedMod);
+            stream.SendNext(IsKing);
+        }
+        else
+        {
+            Health = (int)stream.ReceiveNext();
+            Damage = (int)stream.ReceiveNext();
+            Resistance = (int)stream.ReceiveNext();
+            Range = (float)stream.ReceiveNext();
+            IsPirate = (bool)stream.ReceiveNext();
+            Cost = (int)stream.ReceiveNext();
+            SpeedMod = (float)stream.ReceiveNext();
+            IsKing = (bool)stream.ReceiveNext();
+        }
     }
 
     //A simple finite state machine using an enum (AIState) and switch statement. Due to the relatively limited and simplistic

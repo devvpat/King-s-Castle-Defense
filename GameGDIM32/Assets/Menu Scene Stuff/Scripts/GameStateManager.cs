@@ -1,10 +1,12 @@
-//Tien-Yi Lee
+//Tien-Yi Lee and Dev Patel
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class GameStateManager : MonoBehaviour
+public class GameStateManager : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     private string MenuSceneName;
@@ -28,7 +30,19 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
-    public static GameState state { get; private set; }
+    //Dev Patel
+    public String GetMenuSceneName() { return MenuSceneName; }
+    public String GetGameSceneName() { return GameSceneName; }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    public static GameState state;
 
     public enum GameState //list gamestates
     {
@@ -54,15 +68,24 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
-    //Following 4 methods created by both Dev Patel and Tien-Yi Lee
+    //Dev Patel
     public void NewGame(bool singlePlayer) //starting a new game
     {
-        if (singlePlayer) PlayerPrefs.SetInt("SoloMode", 1);
-        else PlayerPrefs.SetInt("SoloMode", 0);
         state = GameState.Playing;
-        SceneManager.LoadScene(GameStateManager.instance.GameSceneName);
+        if (singlePlayer)
+        {
+            PlayerPrefs.SetInt("SoloMode", 1);
+            PlayerPrefs.SetInt("Online", 0);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("SoloMode", 0);
+            PlayerPrefs.SetInt("Online", 0);
+        }
+        SceneManager.LoadScene(GameStateManager.instance.GameSceneName); //use scene manager for singleplayer/local multiplayer
     }
 
+    //Dev Patel
     public void RestartGameScene()
     {
         if (state == GameState.Paused)
@@ -70,19 +93,36 @@ public class GameStateManager : MonoBehaviour
             GameStateManager.instance.TogglePause();
         }
         state = GameState.Playing;
-        SceneManager.LoadScene(GameStateManager.instance.GameSceneName);
+        if (PlayerPrefs.GetInt("Online") == 0) SceneManager.LoadScene(GameStateManager.instance.GameSceneName);
+        else if (PhotonNetwork.IsMasterClient) PhotonManager._instance.NewOnlineGame();
     }
 
-    public void QuitToTitle() //moving back to the MENU
+    //Dev Patel
+    public void QuitToTitle()
     {
         if (state == GameState.Paused)
         {
-            GameStateManager.instance.TogglePause(); //added by Dev Patel - turns off pause then quits to title
+            GameStateManager.instance.TogglePause();
         }
         state = GameState.Menu;
-        SceneManager.LoadScene(GameStateManager.instance.MenuSceneName);
+        if (PlayerPrefs.GetInt("Online") == 1)
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+        else
+        {
+            SceneManager.LoadScene(GameStateManager.instance.MenuSceneName);
+        }
     }
 
+    //Dev Patel
+    public override void OnLeftRoom()
+    {
+        SceneManager.LoadScene(GameStateManager.instance.MenuSceneName);
+        base.OnLeftRoom();
+    }
+
+    //Tien-Yi
     public void QuitGame() //quit button on MENU
     {
         Application.Quit(); //Quit the game
