@@ -7303,7 +7303,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -81.613976, y: -59.999996}
+  m_AnchoredPosition: {x: 288.9, y: 66.2}
   m_SizeDelta: {x: 199.16, y: 41.8692}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &431277942
@@ -7437,7 +7437,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -95.227, y: 138}
+  m_AnchoredPosition: {x: 328.6, y: 70}
   m_SizeDelta: {x: 462.39, y: 41.8692}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &454730418
@@ -16038,8 +16038,8 @@ MonoBehaviour:
     Music
     promoted by https://www.chosic.com/free-music/all/
 
-    Creative Commons CC
-    BY-SA 3.0
+    Creative Commons CC BY-SA
+    3.0
 
     https://creativecommons.org/licenses/by-sa/3.0/'
   m_isRightToLeft: 0
@@ -41805,8 +41805,8 @@ MonoBehaviour:
     Music
     promoted by https://www.chosic.com/free-music/all/
 
-    Creative Commons CC
-    BY-SA 3.0
+    Creative Commons CC BY-SA
+    3.0
 
     https://creativecommons.org/licenses/by-sa/3.0/'
   m_isRightToLeft: 0

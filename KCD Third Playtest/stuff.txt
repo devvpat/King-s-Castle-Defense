@@ -1,7 +1,0 @@
-.cs files with photon stuff:
-Character.cs
-CharacterManager.cs
-GameplayManager.cs
-Launcher.cs
-PhotonManager.cs
-PlayerNameInputField.cs
