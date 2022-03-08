@@ -81,7 +81,8 @@ public class GameplayManager : MonoBehaviour
         if (SoloMode)
         {
             //On solomode, setup singleplayer ai
-            //SP_PirateSpawner._instance.Setup();
+            //SP_PirateSpawner._instance.Setup(); //random spawner
+            AIBehaviour._instance.Setup();
         }
         OnCastleWin += SpawnHandler.DisableSpawn;
         OnPirateWin += SpawnHandler.DisableSpawn;

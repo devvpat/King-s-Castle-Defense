@@ -114,7 +114,7 @@ public class CanvasManager : MonoBehaviour
 
     public void SP_UpdateCoins()
     {
-        SP_CoinText.text = "Coins: " + CoinManager._instance.Coins[0];
+        SP_CoinText.text = "" + CoinManager._instance.Coins[0]; //"Coins:"  //replaced by Coin Image //Tien-Yi Lee
     }
 
     public void MP_UpdateScore()
@@ -125,7 +125,7 @@ public class CanvasManager : MonoBehaviour
 
     public void MP_UpdateCoins()
     {
-        MP_CoinText[0].text = "Coins: " + CoinManager._instance.Coins[0];
-        MP_CoinText[1].text = "Coins: " + CoinManager._instance.Coins[1];
+        MP_CoinText[0].text = "" + CoinManager._instance.Coins[0]; //"Coins:"  //replaced by Coin Image //Tien-Yi Lee
+        MP_CoinText[1].text = "" + CoinManager._instance.Coins[1]; //"Coins:"  //replaced by Coin Image //Tien-Yi Lee
     }
 }

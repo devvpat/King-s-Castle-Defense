@@ -56,7 +56,7 @@ public class CoinManager : MonoBehaviour
     {
         Coins[player] += 1;
         CanvasManager._instance.UpdateDisplayedData();
-        yield return new WaitForSeconds(MP_TimeBetweenGeneration);
+        yield return new WaitForSeconds(time);
         StartCoroutine(GenerateCoins(time, player));
     }
 }
